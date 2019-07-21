@@ -72,11 +72,9 @@ CREATE TABLE `user` (
 		`id` int(11) NOT NULL,
 		`login` varchar(255) NOT NULL,
 		`password` varchar(255) NOT NULL,
-		`lastName` varchar(255) NOT NULL,
-		`firstName` varchar(255) NOT NULL,
 		`email` varchar(255) NOT NULL,
 		`notification` tinyint(1) NOT NULL DEFAULT '1',
-		`unique_key` varchar(255) NOT NULL,
+		`user_key` varchar(255) NOT NULL,
 		`confirmed` tinyint(1) NOT NULL
 		);
 

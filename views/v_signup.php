@@ -1,63 +1,52 @@
 <?PHP
 require_once('./v_header.php');
-require_once('../controllers/c_newacc.php');
-
+echo 'asadf123';
+//require_once('../controllers/c_newacc.php');
+require_once('../config/db_query.php');
+echo 'asadf';
 session_start();
 
-if (isset($_POST) && isset($_POST['password'])) {
-		try
-	{
-  $db = new PDO('mysql:host=localhost;dbname=rush00', 'root', 'rmerien');
-  $db->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
-  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$uname = $_POST["user"];
+$mail = $_POST["mail"];
+$passwd = $_POST["pwd"];
+$passwd2 = $_POST["pwd2"];
+print_r($_POST);
+if ($passwd !== $passwd2) {
+    echo "<p class='alert error'> Error : passwords don't match </p>";
 }
-catch(Exception $e)
-{
-  echo '<p style="font-size:2vw">Une erreur est survenue</p>';
-  die();
+else if (isset($_POST) && isset($_POST['pwd'])) {
+    /*&if (!valid_login($login)) {
+        echo '<p class="alert error">Username already taken.</p>';
+    }*/
+	///else {
+        echo "AYA LA SAUCE";
+        $passwd = hash('sha512', $passwd);
+        pdo_query("INSERT INTO `user` (`uname`, `mail`, `passwd`) VALUES (:uname, :mail, :passwd)", array("uname" => $uname, "mail" => $mail, "passwd" => $passwd)); 
+	    echo "<p class='alert'> Account successfully created </p>";
+	//}
 }
 
-	$login = $_POST["username"];
-	$passwd = $_POST["password"];
-	$passwd2 = $_POST["password2"];
-	if (!isset($login) || !$passwd) {
-		echo "ERROR, do not leave any empty fields\n";
-	}
-	else if ($passwd !== $passwd2) {
-		echo "ERROR : Passwords do not match\n";
-	}
-	else if (!valid_login($login))
-				exit("ERROR : Username already taken, please chose another one\n");
-	else {
-		$group = "client";
-		$passwd = hash('sha512', $passwd);
-	$category=$_POST['category'];
-	$insert = $db->prepare("INSERT INTO user VALUES('','$login', '$group', '$passwd')");
-	$insert->execute();
-		echo "Account successfully created";
-	}
-}
-
-if (($_SESSION['loggued_on_user']) === "" || !(isset($_SESSION['loggued_on_user']))) {
+if (($_SESSION['logged_on_user']) === "" || !(isset($_SESSION['logged_on_user']))) {
 ?>
 <html>
 
     
     <head>
         <title>Sign Up | Camagru</title>
-		<link rel="stylesheet" href="../public/stylesheets/form.css">
+        <link rel="stylesheet" href="../public/stylesheets/form.css">
     </head>
-    
+
     <body>
         <div class="mid-wrap">
             <div class="form-wrap flex-container">
                 <form method="POST" action="#">
                     <h1>Sign Up</h1>
-                    <input type="text" placeholder="Username" name="user">
-                    <input type="email" placeholder="Email" name="mail">
-                    <input type="password" placeholder="Password" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
-                    <input type="password" placeholder="Confirm Password" name="pwd2">
-                    <input type="submit" value="Sign Up">
+                    <input type="text" placeholder="Username" required name="user">
+                    <input type="email" placeholder="Email" required name="mail">
+                    <input type="password" placeholder="Password" required name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                    <input type="password" placeholder="Confirm Password" required name="pwd2">
+                    <input type="submit" value="Sign Up" name="submit">
                 </form>
             </div>
         </div>
@@ -66,5 +55,9 @@ if (($_SESSION['loggued_on_user']) === "" || !(isset($_SESSION['loggued_on_user'
 
 <?PHP 
 }
+else {
+    echo $_SESSION['logged_on_user'];
+}
 
-require_once('./v_footer.php'); ?>
+require_once('./v_footer.php');
+?>

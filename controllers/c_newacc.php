@@ -1,19 +1,14 @@
 <?PHP
 
-function	valid_login($login) {
-	try	{
-		$db = new PDO('mysql:host=localhost;dbname=rush00', 'root', 'rmerien');
-  		$db->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch(Exception $e)
-	{
-		header('Location: /index.php');
-		return FALSE;
-	}
-	$select=$db->query("SELECT * FROM user");
+require_once('./c_db_query.php');
 
-	while($s = $select->fetch(PDO::FETCH_OBJ)) {
+function	valid_login($login) {
+	
+	$select = pdo_query("SELECT * FROM user", array());
+	if (!$select)
+		return FALSE;
+	while ($s = $select->fetch(PDO::FETCH_OBJ)) {
+		var_dump("$s");
 		if ($s->login === $login) {
 			return FALSE;
 		}

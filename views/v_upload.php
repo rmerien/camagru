@@ -1,6 +1,6 @@
 <?php
 
-require_once('./v_header.php');
+require_once('/camagru/v_header.php');
 
 session_start();
 
@@ -8,4 +8,4 @@ session_start();
 
 
 <?php
-require_once('./v_footer.php'); ?>
+require_once('/camagru/v_footer.php'); ?>
