@@ -3,7 +3,7 @@ require_once('./v_header.php');
 echo 'asadf123';
 //require_once('../controllers/c_newacc.php');
 require_once('../config/db_query.php');
-echo 'asadf';
+
 session_start();
 
 
@@ -12,6 +12,7 @@ $mail = $_POST["mail"];
 $passwd = $_POST["pwd"];
 $passwd2 = $_POST["pwd2"];
 print_r($_POST);
+echo '789';
 if ($passwd !== $passwd2) {
     echo "<p class='alert error'> Error : passwords don't match </p>";
 }
