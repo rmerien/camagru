@@ -16,7 +16,7 @@
 				echo "<ul><li><a class='redir' href='/camagru/views/v_upload.php'>UPLOAD</a></div></li>
 				<li><a class='redir' href='/camagru/views/v_signout.php'>LOGOUT</a></div></li></ul>";
 			else
-				echo "<ul><li><a class='redir' href='/camagru/views/v_signin.php'>LOGIN</a></div></li>
+				echo "<ul><li><a class='redir' href='/camagru/views/v_signin.php'>SIGN IN</a></div></li>
 				<li><a class='redir' href='/camagru/views/v_signup.php'>SIGN UP</a></div></li></ul>";
 			?>
 	</header>

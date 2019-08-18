@@ -14,6 +14,9 @@ else if (isset($_POST) && isset($_POST['pwd'])) {
     if (!valid_login($uname)) {
         echo '<p class="alert error">Username already taken.</p>';
     }
+    else if (!valid_email($mail)) {
+        echo '<p class="alert error">E-mail already registered.</p>';
+    }
 	else {
         $passwd = hash('sha512', $passwd);
         pdo_query("INSERT INTO `user` (`uname`, `mail`, `passwd`) VALUES (:uname, :mail, :passwd)", array("uname" => $uname, "mail" => $mail, "passwd" => $passwd)); 
@@ -24,8 +27,6 @@ else if (isset($_POST) && isset($_POST['pwd'])) {
 if (($_SESSION['logged_on_user']) === "" || !(isset($_SESSION['logged_on_user']))) {
 ?>
 <html>
-
-    
     <head>
         <title>Sign Up | Camagru</title>
         <link rel="stylesheet" href="../public/stylesheets/form.css">
@@ -47,7 +48,7 @@ if (($_SESSION['logged_on_user']) === "" || !(isset($_SESSION['logged_on_user'])
     </body>
 </html>
 
-<?PHP 
+<?PHP
 }
 else {
     echo $_SESSION['logged_on_user'];

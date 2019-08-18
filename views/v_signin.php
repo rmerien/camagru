@@ -1,13 +1,13 @@
 <?PHP
 require_once('./v_header.php');
+require_once('../')
 
 var_dump($_POST);
 if (isset($_POST) && isset($_SESSION)) {
     echo "asfdgsaedfhgrasdg";
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $login = $_POST['username'];
-        $passwd = $_POST['password'];
-        $passwd = hash('sha512', $passwd);
+        $passwd = hash('sha512', $_POST['password']);
         if (1) {
             $_SESSION['logged_on_user'] = $login;
             echo "OK\n";
