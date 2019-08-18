@@ -1,4 +1,5 @@
-<?php require_once('/camagru/v_header.php'); ?>
+<?php require_once('./v_header.php'); ?>
 
 
-<?php require_once('/camagru/v_footer.php'); ?>
+
+<?php require_once('./v_footer.php'); ?>
