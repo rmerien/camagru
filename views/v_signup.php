@@ -1,31 +1,24 @@
 <?PHP
 require_once('./v_header.php');
-echo 'asadf123';
-//require_once('../controllers/c_newacc.php');
+require_once('../controllers/c_newacc.php');
 require_once('../config/db_query.php');
-
-session_start();
-
 
 $uname = $_POST["user"];
 $mail = $_POST["mail"];
 $passwd = $_POST["pwd"];
 $passwd2 = $_POST["pwd2"];
-print_r($_POST);
-echo '789';
 if ($passwd !== $passwd2) {
     echo "<p class='alert error'> Error : passwords don't match </p>";
 }
 else if (isset($_POST) && isset($_POST['pwd'])) {
-    /*&if (!valid_login($login)) {
+    if (!valid_login($uname)) {
         echo '<p class="alert error">Username already taken.</p>';
-    }*/
-	///else {
-        echo "AYA LA SAUCE";
+    }
+	else {
         $passwd = hash('sha512', $passwd);
         pdo_query("INSERT INTO `user` (`uname`, `mail`, `passwd`) VALUES (:uname, :mail, :passwd)", array("uname" => $uname, "mail" => $mail, "passwd" => $passwd)); 
 	    echo "<p class='alert'> Account successfully created </p>";
-	//}
+	}
 }
 
 if (($_SESSION['logged_on_user']) === "" || !(isset($_SESSION['logged_on_user']))) {

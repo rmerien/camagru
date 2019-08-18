@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<?PHP session_start(); ?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -12,7 +14,7 @@
 		<?PHP
 			if (isset($_SESSION['logged_on_user']))
 				echo "<ul><li><a class='redir' href='/camagru/views/v_upload.php'>UPLOAD</a></div></li>
-				<li><a class='redir' href='/camagru/views/v_signup.php'>LOGOUT</a></div></li></ul>";
+				<li><a class='redir' href='/camagru/views/v_signout.php'>LOGOUT</a></div></li></ul>";
 			else
 				echo "<ul><li><a class='redir' href='/camagru/views/v_signin.php'>LOGIN</a></div></li>
 				<li><a class='redir' href='/camagru/views/v_signup.php'>SIGN UP</a></div></li></ul>";

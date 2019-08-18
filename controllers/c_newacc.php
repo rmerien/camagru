@@ -1,18 +1,18 @@
 <?PHP
-
-require_once('./c_db_query.php');
+require_once('../config/db_query.php');
 
 function	valid_login($login) {
-	
-	$select = pdo_query("SELECT * FROM user", array());
+	$select = pdo_query("SELECT uname FROM user", array());
 	if (!$select)
 		return FALSE;
-	while ($s = $select->fetch(PDO::FETCH_OBJ)) {
-		var_dump("$s");
-		if ($s->login === $login) {
-			return FALSE;
+	$data = $select->fetchAll();
+	$select = NULL;
+		foreach ($data as $name)
+		{
+			if ($name[0] == $login) {
+				return FALSE;
+			}
 		}
-	}
 	return TRUE;
 }
 
