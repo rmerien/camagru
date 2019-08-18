@@ -14,7 +14,7 @@
   	// image file directory
   	$target = "/camagru/img/extern/".basename($image);
 
-  	$sql = "INSERT INTO images (image, image_text) VALUES ('$image', '$image_text')";
+  	$sql = "INSERT INTO image (image, text) VALUES ('$image', '$image_text')";
   	pdo_query($sql, array());
 
   	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
@@ -39,7 +39,7 @@
             echo "<p>".$row['image_text']."</p>";
             echo "</div>";
             } ?>
-        <form method="POST" action="index.php" enctype="multipart/form-data">
+        <form method="POST" action="#" enctype="multipart/form-data">
   	        <input type="hidden" name="size" value="1000000">
   	        <div>
   	            <input type="file" name="image">

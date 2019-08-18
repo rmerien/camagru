@@ -2,14 +2,13 @@
 require_once('./v_header.php');
 require_once('../controllers/c_signin.php');
 
-if (isset($_POST) && isset($_SESSION)) {
+if (isset($_POST) && isset($_SESSION) && !$_SESSION['logged_on_user']) {
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $login = $_POST['username'];
         $passwd = hash('sha512', $_POST['password']);
         if (valid_signin($login, $passwd)) {
             $_SESSION['logged_on_user'] = $login;
             $_SESSION['lou_mail'] = get_email($login);
-            echo "Successfully logged in\n";
         }
         else {
             $_SESSION['logged_on_user'] = "";
