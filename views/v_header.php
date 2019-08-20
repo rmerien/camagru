@@ -16,7 +16,7 @@
 				echo "<ul>
 				<li><a class='redir' href='/camagru/views/v_upload.php'>UPLOAD</a></div></li>
 				<li><a class='redir' href='/camagru/views/v_signout.php'>LOGOUT</a></div></li>
-				<li><a class='redir'>".$_SESSION['logged_on_user']."</p></li>
+				<li><a class='redir' href='/camagru/views/v_user.php'>".$_SESSION['logged_on_user']."</p></li>
 				</ul>";
 			else
 				echo "<ul>
