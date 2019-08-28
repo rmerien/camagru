@@ -18,8 +18,9 @@
     if (!file_exists('../img/extern'.$owner))
         mkdir('../img/extern/'.$owner);
 
-  	$target = "../img/extern/".$owner.'/'.$img_name;
-    $sql = "INSERT INTO image (image, text, owner) VALUES ('$img_name', '$img_text', '$owner')";
+    $target = "../img/extern/".$owner.'/'.$img_name;
+    $time = $_SERVER['REQUEST_TIME'];
+    $sql = "INSERT INTO image (image, text, owner, time) VALUES ('$img_name', '$img_text', '$owner', '$time')";
     pdo_query($sql, array());
   	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
         header('Location: ..');
