@@ -11,12 +11,12 @@ if (isset($_POST) && isset($_SESSION) && !$_SESSION['logged_on_user']) {
             $_SESSION['lou_mail'] = get_email($login);
         }
         else {
-            $_SESSION['logged_on_user'] = "";
+            unset($_SESSION['logged_on_user']);
             echo "ERROR\n";
         }
     }
 }
-if (($_SESSION['logged_on_user']) === "" || !(isset($_SESSION['logged_on_user']))) {
+if (!(isset($_SESSION['logged_on_user']))) {
 ?>
 
 <html>
