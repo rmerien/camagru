@@ -2,15 +2,12 @@
         require('../config/db_query.php');
         require('../controllers/c_namegen.php'); ?>
 <?php
+if ($_SESSION['logged_on_user']) {
   if (isset($_POST['upload'])) {
-    echo ('a');
     $owner = $_SESSION['logged_on_user'];
-    echo ('b');
     $image = $_FILES['image']['name'];
     $ext = pathinfo($image, PATHINFO_EXTENSION);
-    echo ('c');
     $img_name = generateRandomString(20).'.'.$ext;
-    echo ('d');
     $img_text = $_POST['image_text'];
     
     if (!file_exists('../img/extern'))
@@ -26,8 +23,8 @@
         header('Location: ..');
         echo("Image uploaded successfully");
     } else {
-  		echo("Failed to upload image");
-      }
+  	  	echo("Failed to upload image");
+    }
   }
 
 ?>
@@ -50,5 +47,9 @@
     </form>
 </body>
 </html>
-
-<?php require_once('./v_footer.php'); ?>
+<?php
+}
+else {
+  header('Location: /camagru/views/v_signin.php');
+}
+require_once('./v_footer.php'); ?>
