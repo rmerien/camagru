@@ -4,7 +4,7 @@
 <?php       $img_list = pdo_query("SELECT * FROM image", array());
             while ($row = $img_list->fetch()) {
                 echo "<div>";
-                echo "<img src='img/extern/".$row['image']."' >";
+                echo "<img src='img/extern/".$row['owner'].'/'.$row['image']."' >";
                 echo "<p>".$row['text']."</p>";
                 echo "</div>";
             } ?>

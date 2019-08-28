@@ -2,10 +2,6 @@
         require('../config/db_query.php');
         require('../controllers/c_namegen.php'); ?>
 <?php
-  // Initialize message variable
-  $msg = "";
-
-  // If upload button is clicked ...
   if (isset($_POST['upload'])) {
     echo ('a');
     $owner = $_SESSION['logged_on_user'];
@@ -17,21 +13,20 @@
     echo ('d');
     $img_text = $_POST['image_text'];
     
+    if (!file_exists('../img/extern'))
+        mkdir('../img/extern');
     if (!file_exists('../img/extern'.$owner))
         mkdir('../img/extern/'.$owner);
 
-  	// image file directory
   	$target = "../img/extern/".$owner.'/'.$img_name;
-
+    $sql = "INSERT INTO image (image, text, owner) VALUES ('$img_name', '$img_text', '$owner')";
+    pdo_query($sql, array());
   	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-        $sql = "INSERT INTO image (image, text, owner) VALUES ('$img_name', '$img_text', '$owner')";
-        pdo_query($sql, array());
-        //header('Location: .');
-        $msg = "Image uploaded successfully";
+        header('Location: ..');
+        echo("Image uploaded successfully");
     } else {
-  		$msg = "Failed to upload image";
+  		echo("Failed to upload image");
       }
-      echo $msg;
   }
 
 ?>
