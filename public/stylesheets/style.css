@@ -1,7 +1,7 @@
 body{
-	margin:0;
+	margin: 0;
 	font-family: 'Oswald', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-	display:flex;
+	display: flex;
 	flex-direction: column;
 }
 
@@ -19,7 +19,6 @@ body{
 }
 
 header	{
-	flex-direction: row;
 	justify-content: space-between;
 	height: 10%;
 	width: 100%;

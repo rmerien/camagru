@@ -32,6 +32,7 @@ if ($_SESSION['logged_on_user']) {
 <html>
 <head>
         <title>Upload Image | Camagru</title>
+        <link rel="stylesheet" href="/camagru/public/stylesheets/video.css">
 </head>
 <body>
     <form method="POST" action="#" enctype="multipart/form-data">
@@ -41,10 +42,28 @@ if ($_SESSION['logged_on_user']) {
         </div>
         <div>
             <textarea id="text" cols="40" rows="4" name="image_text" placeholder="Caption..."></textarea>
-  	    </div>  	        <div>
+  	    </div>  	        
+        <div>
         	  <button type="submit" name="upload">POST</button>
   	    </div>
     </form>
+    <div id="container">
+	    <video autoplay="true" id="videoElement">
+	    </video>
+  </div>
+  <script>
+    var video = document.querySelector("#videoElement");
+
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+          video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+          console.log("Something went wrong!");
+        });
+    }
+  </script>
 </body>
 </html>
 <?php

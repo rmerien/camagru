@@ -4,8 +4,8 @@ require_once('../config/db_query.php');
 function    valid_signin($login, $pword) {
     $query = "SELECT passwd FROM user WHERE uname = :login ORDER BY id DESC LIMIT 1";
     $handler = pdo_query($query, array('login' => $login));
-    $db_pw = $handler->fetch();
-    if ($db_pw[0] === $pword) {
+    $db_pw = $handler->fetch()[0];
+    if ($db_pw === $pword) {
         return TRUE;
     }
     return FALSE;
