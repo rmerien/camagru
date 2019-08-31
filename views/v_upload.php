@@ -42,7 +42,7 @@ if ($_SESSION['logged_on_user']) {
         </div>
         <div>
             <textarea id="text" cols="40" rows="4" name="image_text" placeholder="Caption..."></textarea>
-  	    </div>  	        
+  	    </div>
         <div>
         	  <button type="submit" name="upload">POST</button>
   	    </div>
