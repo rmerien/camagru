@@ -9,10 +9,13 @@
                 <br><h2>Camagru</h2><br>
                 <div class="flexbox" id="main-body">
 <?php   while ($row = $img_list->fetch()) {
-                echo    "<div class='feed'>
+                echo    "<div class='feed' onclick='alert"
+                echo "(('You clicked me !'))'>
                                 <img src='img/extern/".$row['owner'].'/'.$row['image']."' >
-                                <p>".$row['text']."</p>
+                                <p>".$row['owner'].' : '.$row['text']."</p>
                         </div>";
         } ?>    </div>
+
+        <script src='views/feed.js'></script>
 
 <?PHP require_once('views/v_footer.php'); ?>
