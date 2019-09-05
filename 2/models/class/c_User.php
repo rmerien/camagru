@@ -191,7 +191,7 @@ Class User {
 	public static function updateUserInfo($updatedInfo) {
 		try {
 			self::checkValidInfo(
-				$updatedInfo['username'],
+				$updatedInfo['uname'],
 				$updatedInfo['mail'],
 				$updatedInfo['password']
 			);
@@ -209,8 +209,8 @@ Class User {
 		}
 		if ($updatedInfo['password'] !== null)
 		{
-			$sql .= " `password` = :password,";
-			$params[':password'] = hash('sha512', $updatedInfo['password']);
+			$sql .= " `password` = :pword,";
+			$params[':pword'] = hash('sha512', $updatedInfo['password']);
 		}
 		$sql = substr($sql, 0, -1);
 		$sql .= " WHERE `uname` = :uname";
@@ -221,21 +221,21 @@ Class User {
 			if ($updatedInfo['mail'] !== null)
 				$_SESSION['logged_on_user']['mail'] = $updatedInfo['mail'];
 			if ($updatedInfo['password'] !== null)
-				$_SESSION['logged_on_user']['password'] = $updatedInfo['password'];
+				$_SESSION['logged_on_user']['pword'] = $updatedInfo['password'];
 		} catch (Exception $e) {
 			throw $e;
 		}
 	}
 
-	public static function updateUserPassword($uname, $password) {
+	public static function updateUserPassword($uname, $pword) {
 		try {
-			self::checkValidInfo(null, null, $password, null, null);
+			self::checkValidInfo(null, null, $pword, null, null);
 			$sql = "UPDATE `user`
-					SET `passwd` = :password 
+					SET `passwd` = :pword 
 					WHERE `uname` = :uname";
 
 			$params = array(
-				':password' => hash('sha512', $password),
+				':pword' => hash('sha512', $pword),
 				':uname'    => $uname
 			);
             $handler = Database::pdoQuery($sql, $params);
