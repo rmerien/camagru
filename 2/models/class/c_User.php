@@ -1,7 +1,7 @@
 <?php
 
-Class User {
-
+Class User
+{
 	public static function checkValidInfo($uname, $mail, $passwd, $oldpasswd) {
         try {
 			$allUsers = self::getAllUsers('username', 'mail');

@@ -4,7 +4,7 @@ class Database
 {
     private static $_conn = NULL;
 
-    private static function _pdoConnect($dsn, $name, $user, $pword) {
+    private static function _pdoConnect($dsn, $user, $pword) {
         if (!$_conn) {
             $options = array(
                 PDO::ATTR_CASE                  =>  PDO::CASE_LOWER,
@@ -13,7 +13,8 @@ class Database
             );
 
             try {
-                self::$_conn = new PDO("mysql:host=$dsn;dbname=$name", $user, $pword, $options);
+                self::$_conn = new PDO($dsn, $user, $pword, $options);
+                self::$_conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             } catch (PDOException $e) {
                 throw new Exception($e->getMessage());
             }

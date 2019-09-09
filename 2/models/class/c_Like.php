@@ -18,23 +18,24 @@ Class Like
 		return (count($query));
     }
 
-    public static function likeAdd($image)
+    public static function likeModify($img_id)
     {
-        $user = $_SESSION['logged_on_user']['uname'];
+        $uid = $_SESSION['logged_on_user']['uid'];
 
-        $sql = 'IF NOT EXISTS (SELECT * FROM `like` WHERE `image` = :img AND `user` = :user)
+        $sql = 'IF NOT EXISTS (SELECT * FROM `like` WHERE `img_id` = :iid AND `uid` = :uid)
                 BEGIN
-                    INSERT INTO `like`(`user`, `image`, `like`)
-                    VALUES (:user, :img, 1)
+                    INSERT INTO `like`(`uid`, `img_id`)
+                    VALUES (:uid, :iid)
                 END
                 ELSE
                 BEGIN
                     DELETE FROM `like`
-                    WHERE `image` = :img AND `user` = :user
+                    WHERE `img_id` = :iid AND `uid` = :uid
                 END';
         $params = array(
-            ':image'    => $image,
-            ':user'     => $user
+            ':iid'     => $img_id,
+            ':uid'     => $uid
         );
     }
+    
 }
