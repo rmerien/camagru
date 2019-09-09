@@ -1,5 +1,5 @@
 <?PHP
-require_once('./v_header.php');
+
 require_once('../controllers/c_newacc.php');
 require_once('../config/db_query.php');
 
@@ -34,7 +34,7 @@ if (($_SESSION['logged_on_user']) === "" || !(isset($_SESSION['logged_on_user'])
 
     <body>
         <div class="mid-wrap">
-            <div class="form-wrap flex-container">
+            <div class="form-wrap flex-con tainer">
                 <form method="POST" action="#">
                     <h1>Sign Up</h1>
                     <input type="text" placeholder="Username" required name="user">

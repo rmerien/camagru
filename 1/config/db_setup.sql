@@ -54,7 +54,7 @@ INSERT INTO `image` (`owner`, `id`, `image`, `text`, `time`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `uname` varchar(50) NOT NULL,
   `mail` varchar(50) NOT NULL,
   `passwd` varchar(550) NOT NULL

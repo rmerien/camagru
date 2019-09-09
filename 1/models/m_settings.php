@@ -1,10 +1,13 @@
 <?PHP
+
+
 require_once('./v_header.php');
 require('../config/db_query.php');
 //require_once('../controllers/c_userMod.php');
 
 if (isset($_SESSION['logged_on_user'])) {
-    $user = $_SESSION['logged_on_user'];
+    $modelSettings = <<<THIS
+    $user = {$_SESSION['logged_on_user']};
     $sql = "SELECT mail FROM user WHERE uname=:login";
     $handler = pdo_query($sql, array('login' => $user));
     $mail = $handler->fetch()[0];
@@ -54,10 +57,10 @@ if (isset($_SESSION['logged_on_user'])) {
         </form>
         <?php
     }
+    THIS;
 }
 else {
-    header('Location: /camagru/views/v_signin.php');
+    $modelSettings = <<<THIS
+        PLEASE SIGN IN
+    THIS;
 }
-
-require_once('./v_footer.php');
-?>
