@@ -4,19 +4,20 @@ Class User
 {
 	public static function checkValidInfo($uname, $mail, $passwd, $oldpasswd) {
         try {
-			$allUsers = self::getFromAllUsers('uname', 'mail');
+			$allUsers = self::getFromAllUsers('username', 'mail');
 		} catch (Exception $e) {
 			throw $e;
 		}
 
-		if (!filter_var($mail, FILTER_VALIDATE_EMAIL) && $mail)
+		if (!filter_var($mail, FILTER_VALIDATE_EMAIL) && $mail) {
 			throw new Exception("Mail is invalid");
+		}
 		else
 		{
 			foreach($allUsers as $user)
 			{
 				if ($user["mail"] === $mail)
-					throw new Exception("E-mail already registered.");
+					throw new Exception("e-mail already registered.");
 			}
 		}
 
@@ -39,7 +40,6 @@ Class User
 			throw new Exception("Password must include at least one upper case letter!");
 	    else if (!preg_match('/[a-z]+/', $passwd))
             throw new Exception("Password must include at least one lower case letter!");
-            
         if ($oldpasswd)
         {
             $sql = "SELECT * FROM `user` WHERE `username` = :uname AND `passwd` = :oldpasswd";
@@ -52,7 +52,7 @@ Class User
                 throw $e;
             }
 
-        }
+		}
 	}
 
 	public static function signUp($uname, $mail, $passwd) {
@@ -70,16 +70,15 @@ Class User
 		}
 
 		$sql = "INSERT INTO `user` (`username`, `mail`, `passwd`)
-				VALUES (:uname, :mail, :pwd)";
-
+				VALUES (:uname, :mail, :passwd)";
 		$params = array(
 			':uname'    => $uname,
 			':mail'     => $mail,
 			':passwd'   => hash('sha512', $passwd)
 		);
-		
+
 		try {
-            $handler = Database::pdoQuery($sql, $params);
+			$handler = Database::pdoQuery($sql, $params);
 		} catch (Exception $e) {
 			throw new Exception($e->getMessage());
 		}
@@ -163,7 +162,7 @@ Class User
 		$sql .= " FROM `user`";
 
 		try {
-            $handler= Database::pdoQuery($sql);
+			$handler= Database::pdoQuery($sql, null);
 		} catch (Exception $e) {
 			throw new Exception($e->getMessage());
 		}

@@ -7,8 +7,7 @@ include './class/c_user.php';
 include './class/c_database.php';
 
 if (array_key_exists('uname', $_POST)
-        && array_key_exists('psw', $_POST))
-{
+        && array_key_exists('psw', $_POST))	{
     try {
 		$status = User::signIn($_POST["uname"], $_POST["psw"]);
 	} catch (Exception $e) {

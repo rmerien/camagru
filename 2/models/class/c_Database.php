@@ -7,7 +7,7 @@ class Database
     private static $_conn = NULL;
 
     public static function _pdoConnect($dsn, $user, $pword) {
-        if (!$_conn) {
+        if (!self::$_conn) {
             $options = array(
                 PDO::ATTR_CASE                  =>  PDO::CASE_LOWER,
                 PDO::ATTR_ERRMODE               =>  PDO::ERRMODE_EXCEPTION,
@@ -25,7 +25,7 @@ class Database
     public static function pdoQuery($sql, $params) {
 
     include '../config/db_config.php';
-    if (!$_conn) {
+    if (!self::$_conn) {
         try {
             self::_pdoConnect($DB_DSN, $DB_USER, $DB_PWORD);
         } catch (Exception $e) {

@@ -1,6 +1,7 @@
 <?PHP
 
-    $page = 'signup';
+    $page = 'New Account';
+
      require './structure/v_pageStructure.php';
 
 echo $prePage; 
