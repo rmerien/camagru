@@ -22,6 +22,6 @@ Class Comment
 
     public static function commentAdd($uid, $comment, $img_id)
     {
-        $sql = "INSERT INTO `comment`(`uid`, `comment`, `c "
+        $sql = "INSERT INTO `comment`(`uid`, `comment`, `c`";
     }
 }
