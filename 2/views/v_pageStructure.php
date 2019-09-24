@@ -15,10 +15,5 @@ $prePage = <<<HTML
 	{$header}
 HTML;
 
-$postPage = <<<AFTER
-
-{$footer}
-
-
-AFTER;
+$postPage = $footer
 

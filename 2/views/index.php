@@ -1,7 +1,6 @@
 <?php   
-        require '../config/dir_config.php';
-        include $DIR_VIEWS . 'v_pageStructure.php';
-        include $DIR_CLASS . 'c_database.php';
+        require './v_pageStructure.php';
+        require '../models/class/c_database.php';
 ?>
 
 <?php echo $prePage; ?>
