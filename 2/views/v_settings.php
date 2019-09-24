@@ -6,7 +6,7 @@ require('../config/db_query.php');
 //require_once('../controllers/c_userMod.php');
 
 if (isset($_SESSION['logged_on_user'])) {
-    $user = {$_SESSION['logged_on_user']};
+    $user = $_SESSION['logged_on_user'];
     $sql = "SELECT mail FROM user WHERE uname=:login";
     $handler = pdo_query($sql, array('login' => $user));
     $mail = $handler->fetch()[0];
