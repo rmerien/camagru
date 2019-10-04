@@ -1,17 +1,17 @@
 <?PHP
 session_start();
 include '../config/dir_config.php';
-$_SESSION['logged_on_user'] = 'Ronan';
+$_SESSION['logged_on_user'] = 'ronan';
 if (isset($_SESSION['logged_on_user'])) {
 
 $nickname = strtoupper($_SESSION['logged_on_user']);
 $navbar = <<<NAV
 
 <div id='navbar'>
-	<a href="../views" id='logo'><img src="../img/logo.png" alt="Camagru"/></a>
+	<a href="../views"><img id='logo' src="../img/logo.png" alt="Camagru"/></a>
 	<div id='nav-right' style='text-align: center;'>
 		<div class='dropdown menu-button'>
-			<span class='menu-button'>{$nickname}<img src='../img/settings.jpg' alt='Settings' height=18px'/></span>	
+			<span class='menu-button'>{$nickname} <img src='../img/settings.jpg' alt='Settings' height=18px'/></span>	
 			<div class='dropdown-content'>  
 				<a class='menu-button drop-menu' href='./settings.php'>SETTINGS</a>
 				<a class='menu-button drop-menu' href='../models/m_signout.php'>LOGOUT</a>
@@ -24,10 +24,11 @@ $navbar = <<<NAV
 NAV;
 }
 else {
+
 $navbar = <<<NAV
 
 <div id='navbar'>
-	<a href="../views" id='logo'><img src="../img/logo.png" alt="Camagru"/></a>
+	<a href="../views"><img id='logo' src="../img/logo.png" alt="Camagru"/></a>
 	<div id='nav-right'>	
 		<a class='menu-button' href='./v_signin.php'>SIGN IN</a>
 		<a class='menu-button' href='./v_signup.php'>SIGN UP</a>
@@ -37,7 +38,7 @@ $navbar = <<<NAV
 NAV;
 }
 
-$navbar .= <<<SCRIPT
+$navbar .= <<<HEADSCRIPT
 
 <script>
 window.onscroll = function() {scrollFunction()};
@@ -53,4 +54,4 @@ function scrollFunction() {
 }
 </script>
 
-SCRIPT;
+HEADSCRIPT;
