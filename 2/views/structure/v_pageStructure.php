@@ -1,5 +1,7 @@
 <?PHP
 
+session_start();
+
 require 'v_data.php';
 require 'v_header.php';
 require 'v_footer.php';
@@ -12,8 +14,13 @@ $prePage = <<<HTML
 	{$metadata}
 </head>
 <body>
-	{$header}
+	{$navbar}
 HTML;
 
-$postPage = $footer
+$postPage = <<<FOOT
 
+	{$footer}
+</body>
+</html>
+
+FOOT;

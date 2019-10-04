@@ -1,5 +1,7 @@
 <?PHP
 
+$page = 'signup';
+
 require_once('../controllers/c_newacc.php');
 require_once('../config/db_query.php');
 

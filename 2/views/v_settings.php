@@ -12,12 +12,7 @@ if (isset($_SESSION['logged_on_user'])) {
     $mail = $handler->fetch()[0];
 ?>
 
-<html>
-    <head>
-        <title>Settings | Camagru</title>
-        <link rel="stylesheet" href="../public/stylesheets/form.css">
-    </head>
-    <body>
+<div class="page">
         <br>
         <ul>
             <li><h3>Username: <?php echo $user?></h3></li>
@@ -32,8 +27,6 @@ if (isset($_SESSION['logged_on_user'])) {
                 </form>
             </div>
         </div>
-    </body>
-</html>
 
 <?php
     if (array_search('Change Mail', $_POST)) {
@@ -44,6 +37,7 @@ if (isset($_SESSION['logged_on_user'])) {
         <input type="email" required placeholder="Confirm e-mail" name="email_check">
         <input type="submit" value="Submit changes" name='m_change'>
     </form>
+    </div>
     <?php
     }
     else if (array_search('Change Password', $_POST)) {
@@ -55,8 +49,11 @@ if (isset($_SESSION['logged_on_user'])) {
             <input type="password" required placeholder="Repeat" name="pword_check" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
             <input type="submit" value="Submit changes" name='p_change'>
         </form>
+        </div>
         <?php
     }
+    else
+        echo '</div>';
 }
 else {
         echo 'PLEASE SIGN IN';

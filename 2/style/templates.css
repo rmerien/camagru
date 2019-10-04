@@ -1,0 +1,22 @@
+.transparent {
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+
+.dropdown {
+	z-index: 98;
+}
+  
+.dropdown-content {
+	display: none;
+	z-index: 99;
+}
+  
+.dropdown:hover > .dropdown-content {
+	display: block;
+}
+
+.form-template {
+
+}
