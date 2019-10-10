@@ -1,6 +1,36 @@
 <?PHP
 
+$page = 'Settings';
 
+include './structure/v_pageStructure.php';
+
+echo $prePage;
+
+if ($_SESSION['logged_on_user']['uname'] ){//&& $_SESSION['logged_on_user']['mail_c']) {   ?>
+
+    <div class="page">
+    <h2 class='page-title'>Settings</h2>
+
+    <p>
+        username: <?php echo $_SESSION['logged_on_user']['uname'];?>
+        <a href='./settings/v_modName.php'>modify</a>
+    </p>
+    <p>
+        e-mail: <?php echo $_SESSION['logged_on_user']['mail'];?>
+        <a href='./settings/v_modMail.php'>modify</a>
+    </p>
+    <p>
+        <a href='./settings/v_modPsw.php'>Change password</a>
+    </div>
+<?php
+}
+else {
+    header('Location: ../views');
+}
+echo $postPage; 
+
+
+/*
 require_once('./v_header.php');
 require('../config/db_query.php');
 //require_once('../controllers/c_userMod.php');

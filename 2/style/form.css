@@ -27,12 +27,6 @@ button {
   opacity: 0.8;
 }
 
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
 .container {
   padding: 16px;
 }
@@ -44,3 +38,7 @@ span.psw {
     padding-top: 16px;
 }
 
+p.error-alert {
+  color: red;
+  text-align: center;
+}

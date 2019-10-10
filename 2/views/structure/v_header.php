@@ -1,10 +1,9 @@
 <?PHP
 session_start();
 include '../config/dir_config.php';
-$_SESSION['logged_on_user'] = 'ronan';
 if (isset($_SESSION['logged_on_user'])) {
 
-$nickname = strtoupper($_SESSION['logged_on_user']);
+$nickname = strtoupper($_SESSION['logged_on_user']['uname']);
 $navbar = <<<NAV
 
 <div id='navbar'>
@@ -13,7 +12,7 @@ $navbar = <<<NAV
 		<div class='dropdown menu-button'>
 			<span class='menu-button'>{$nickname} <img src='../img/settings.jpg' alt='Settings' height=18px'/></span>	
 			<div class='dropdown-content'>  
-				<a class='menu-button drop-menu' href='./settings.php'>SETTINGS</a>
+				<a class='menu-button drop-menu' href='./v_settings.php'>SETTINGS</a>
 				<a class='menu-button drop-menu' href='../models/m_signout.php'>LOGOUT</a>
 			</div>
 		</div>

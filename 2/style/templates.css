@@ -19,4 +19,9 @@
 
 h2.page-title {
 	text-align: center;
+	text-decoration: underline;
+}
+
+.underlined {
+	text-decoration: underline;
 }

@@ -100,7 +100,7 @@ Class User
 		return ($handler);
 	}
 
-	public static function logIn($uname, $passwd) {
+	public static function signIn($uname, $passwd) {
 		$passwd = hash('sha512', $passwd);
 		$sql = "SELECT * FROM `user` WHERE `uname` = :uname AND `passwd` = :passwd";
 
@@ -117,11 +117,11 @@ Class User
 		$query = $handler->fetch();
 		
 		if ($query === FALSE)
-			throw new Exception("Incorrect username/password");
+			throw new Exception("Incorrect username / password");
 		if ($query['account_confirmed'] == 0)
 			throw new Exception("Your account has not been confirmed yet");
 		
-		unset($query['password']);
+		unset($query['passwd']);
 		$_SESSION['logged_on_user'] = $query;
 		return ($query);
 	}
@@ -193,7 +193,7 @@ Class User
 			self::checkValidInfo(
 				$updatedInfo['uname'],
 				$updatedInfo['mail'],
-				$updatedInfo['password']
+				$updatedInfo['passwd']
 			);
 		} catch (Exception $e) {
 			throw $e;
@@ -207,10 +207,10 @@ Class User
 			$sql .= " `account_confirmed`=0,";
 			$params[':mail'] = $updatedInfo['mail'];
 		}
-		if ($updatedInfo['password'] !== null)
+		if ($updatedInfo['passwd'] !== null)
 		{
-			$sql .= " `password` = :pword,";
-			$params[':pword'] = hash('sha512', $updatedInfo['password']);
+			$sql .= " `passwd` = :pword,";
+			$params[':pword'] = hash('sha512', $updatedInfo['passwd']);
 		}
 		$sql = substr($sql, 0, -1);
 		$sql .= " WHERE `uname` = :uname";
@@ -220,8 +220,8 @@ Class User
             $handler = Database::pdoQuery($sql, $params);
 			if ($updatedInfo['mail'] !== null)
 				$_SESSION['logged_on_user']['mail'] = $updatedInfo['mail'];
-			if ($updatedInfo['password'] !== null)
-				$_SESSION['logged_on_user']['pword'] = $updatedInfo['password'];
+			if ($updatedInfo['passwd'] !== null)
+				$_SESSION['logged_on_user']['pword'] = $updatedInfo['passwd'];
 		} catch (Exception $e) {
 			throw $e;
 		}

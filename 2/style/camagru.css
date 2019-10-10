@@ -1,5 +1,8 @@
+
+@import 'templates.css';
+
 @import 'struct.css';
 
 @import 'form.css';
 
-@import 'templates.css';
+@import 'settings.css';
