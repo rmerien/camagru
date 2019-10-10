@@ -121,7 +121,7 @@ div.page {
 	}
 	#nav-right {
 		margin-top: 10px;
-		float: none;
+		float: none !important;
 	}
 	div.page {
 		margin-top:210px;
