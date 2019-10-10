@@ -1,7 +1,9 @@
 div.set-menu {
     float: right;
+    max-width: 40%;
 }
 
 div.set-info {
     float: left;
+    width: 60%;
 }

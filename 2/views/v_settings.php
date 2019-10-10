@@ -8,20 +8,22 @@ echo $prePage;
 
 if ($_SESSION['logged_on_user']['uname'] ){//&& $_SESSION['logged_on_user']['mail_c']) {   ?>
 
-    <div class="page">
-    <h2 class='page-title'>Settings</h2>
+<div class="page">
+<h2 class='page-title'>Settings</h2>
 
-    <p>
-        username: <?php echo $_SESSION['logged_on_user']['uname'];?>
-        <a href='./settings/v_modName.php'>modify</a>
-    </p>
-    <p>
-        e-mail: <?php echo $_SESSION['logged_on_user']['mail'];?>
-        <a href='./settings/v_modMail.php'>modify</a>
-    </p>
-    <p>
-        <a href='./settings/v_modPsw.php'>Change password</a>
+    <div class='set-left'>
+        <div class='set-menu' id='set-uname'>
+            username: <?php echo $_SESSION['logged_on_user']['uname'];?>
+        </div>
+        <div class='set-menu' id='set-mail'>
+            e-mail: <?php echo $_SESSION['logged_on_user']['mail'];?>
+        </div>
+        <div class='set-menu' id='set-passwd'>
+            Change Password
+        </div>
     </div>
+
+</div>
 <?php
 }
 else {
