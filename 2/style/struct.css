@@ -33,7 +33,7 @@ body {
 }
 
 #navbar span.menu-button, #navbar a.menu-button {
-	padding: 12px;
+	padding: 10px;
 	margin: 10px;
 	border-left: 1px solid black;
 }
@@ -62,8 +62,9 @@ div.menu-button:hover span.menu-button:hover{
 #navbar #nav-right { float: right; }
 
 #navbar img#logo {
-	height: 43px;
+	height: 10%;
 	margin-top: 10px;
+	max-height: 1000px;
 }
 
 
@@ -112,19 +113,24 @@ div.page {
 
 
 @media screen and (max-width: 600px) {
-	#navbar { padding: 20px 20px !important; }
+	#navbar {
+		padding: 0px 10px !important;
+		height: 30% !important;
+		max-height: 50% !important;
+	}
 	#navbar .menu-button {
-	  float: none;
-	  display: block;
-	  text-align: left;
-	  padding: 0;
+		float: none;
+		display: block;
+		text-align: left;
+		padding: 0 12px !important;
+		height: 10%;
 	}
 	#nav-right {
 		margin-top: 10px;
 		float: none !important;
 	}
 	div.page {
-		margin-top:210px;
+		margin-top:30%;
 		width: 100%;
 	}
 	#footer { position: static; }

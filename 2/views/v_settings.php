@@ -12,17 +12,22 @@ if ($_SESSION['logged_on_user']['uname'] ){//&& $_SESSION['logged_on_user']['mai
 <h2 class='page-title'>Settings</h2>
 
     <div class='set-left'>
-        <div class='set-menu' id='set-uname'>
+        <br><div class='set-menu' id='set-uname'>
             username: <?php echo $_SESSION['logged_on_user']['uname'];?>
-        </div>
+        </div><br>
         <div class='set-menu' id='set-mail'>
             e-mail: <?php echo $_SESSION['logged_on_user']['mail'];?>
-        </div>
+        </div><br>
         <div class='set-menu' id='set-passwd'>
             Change Password
         </div>
     </div>
-
+    <div class='set-form'>
+        <div>
+        Lalal
+        </div>
+    </div>
+    
 </div>
 <?php
 }

@@ -1,9 +1,11 @@
-div.set-menu {
-    float: right;
-    max-width: 40%;
+div.set-left {
+    background-color: purple;
+    float: left;
+    width: 40%;
+    font-size: 30px;
 }
 
-div.set-info {
+div.set-form {
     float: left;
     width: 60%;
 }
