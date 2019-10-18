@@ -10,24 +10,26 @@ if ($_SESSION['logged_on_user']['uname'] ){//&& $_SESSION['logged_on_user']['mai
 
 <div class="page">
 <h2 class='page-title'>Settings</h2>
-
-    <div class='set-left'>
-        <br><div class='set-menu' id='set-uname'>
-            username: <?php echo $_SESSION['logged_on_user']['uname'];?>
-        </div><br>
-        <div class='set-menu' id='set-mail'>
-            e-mail: <?php echo $_SESSION['logged_on_user']['mail'];?>
-        </div><br>
-        <div class='set-menu' id='set-passwd'>
-            Change Password
-        </div>
+<?php var_dump($_GET); ?>
+<div class='container-2'>
+<form id='set-nav' action="#" method="get">
+    <div class='set-menu'>
+        <button class='set-index' type="submit" name='display' value='view_info'>User Info</button>
+        <button class='set-index' type="submit" name='display' value='mod_mail'>Change Mail</button>
+        <button class='set-index' type="submit" name='display' value='mod_pwrd'>Change Password</button>
+        <button class='set-index' type="submit" name='display' value='manage_acc'>Privacy</button>
+<!--    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label> -->
+  </div>
     </div>
-    <div class='set-form'>
+    <div class='set-body'>
         <div>
         Lalal
         </div>
     </div>
-    
+    <br style="clear: left;" />
+</div>
 </div>
 <?php
 }

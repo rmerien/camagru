@@ -1,6 +1,8 @@
 <?PHP
 
-$pageTitle = $page . ' | Camagru';
+include '../config/web_config.php';
+
+$pageTitle = $page . ' | ' . $WEB_NAME;
 
 $metadata = <<<DATA
 

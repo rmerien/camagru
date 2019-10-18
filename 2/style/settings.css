@@ -1,11 +1,27 @@
-div.set-left {
+div.container-2 {
+    height: 60vh
+}
+
+div.set-menu {
     background-color: purple;
     float: left;
     width: 40%;
+    min-height: 60vh;
     font-size: 30px;
+    border-right: 5px solid black;
 }
 
-div.set-form {
-    float: left;
+button.set-index{
+    background-color: rgb(215, 241, 167);
+    color: white;
+    padding: 20px 20px;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+div.set-body {
+    float: right;
     width: 60%;
-}
+},

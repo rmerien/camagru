@@ -16,15 +16,15 @@ if (!$_SESSION['logged_on_user']) {   ?>
     unset($_SESSION['error']);
   ?>
 </p>
-<form action="../models/m_signin.php" method="post">
+<form class='v1' action="../models/m_signin.php" method="post">
   <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input require type="text" placeholder="Enter Username" name="uname" required>
+    <input require class='v1' type="text" placeholder="Enter Username" name="uname" required>
 
     <label for="psw"><b>Password</b></label>
-    <input require type="password" placeholder="Enter Password" name="psw" required>
+    <input require class='v1' type="password" placeholder="Enter Password" name="psw" required>
         
-    <button class='submit-button' type="submit">Login</button>
+    <button class='submit-button v1' type="submit">Login</button>
 <!--    <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label> -->

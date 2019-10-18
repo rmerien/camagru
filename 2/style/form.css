@@ -1,10 +1,10 @@
 
-form {border: 3px solid #f1f1f1;
-        max-width: 400px;
+form.v1 {border: 3px solid #f1f1f1;
+    max-width: 400px;
     margin: auto;
 }
 
-input[type=text], input[type=password] {
+input[type=text].v1, input[type=password].v1 {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -13,7 +13,7 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
-button {
+button.v1{
   background-color: rgb(250,100,200);
   color: white;
   padding: 14px 20px;

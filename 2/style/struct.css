@@ -109,34 +109,64 @@ div.page {
 	background-color: rgb(200, 200, 250);
 }
 
-
-
+@media screen and (max-height: 600px) {
+	#footer {
+		position: static;
+	}
+	#navbar .menu-button {
+		font-size: 14px;
+	}
+}
 
 @media screen and (max-width: 600px) {
 	#navbar {
-		padding: 0px 10px !important;
-		height: 30% !important;
-		max-height: 50% !important;
+		padding: 5px !important;
+		text-align: center;
+		/*min-height: 30vh;
+		max-height: 50vh;*/
+		font-size: 1px !important;
+	}
+	#navbar img#logo {
+		height: 9vh;
+		max-width: 95%;
+		margin: 0;
+		background-color: brown;
 	}
 	#navbar .menu-button {
 		float: none;
 		display: block;
 		text-align: left;
 		padding: 0 12px !important;
-		height: 10%;
+		line-height: normal;
+		background-color: yellowgreen;
 	}
 	#nav-right {
-		margin-top: 10px;
 		float: none !important;
 	}
 	div.page {
 		margin-top:30%;
 		width: 100%;
 	}
-	#footer { position: static; }
-	span.menu-button { border: 0; }
+	#navbar span.menu-button {
+		margin: 0;
+		border: 0;
+		padding: 0 !important;
+	}
 	div.menu-button:hover{
 		border: none; 
+		border-left: 1px solid black;
+	}
+	#navbar div.menu-button {
+		border: none; 
+		border-left: 1px solid black;
+		margin: 10px;
+	}
+	#footer {
+		position: static;
+	}
+	#navbar a.menu-button {
+		padding: 0px;
+		margin: 10px;
 		border-left: 1px solid black;
 	}
 }
