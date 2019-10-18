@@ -12,23 +12,31 @@ if ($_SESSION['logged_on_user']['uname'] ){//&& $_SESSION['logged_on_user']['mai
 <h2 class='page-title'>Settings</h2>
 <?php var_dump($_GET); ?>
 <div class='container-2'>
-<form id='set-nav' action="#" method="get">
-    <div class='set-menu'>
-        <button class='set-index' type="submit" name='display' value='view_info'>User Info</button>
-        <button class='set-index' type="submit" name='display' value='mod_mail'>Change Mail</button>
-        <button class='set-index' type="submit" name='display' value='mod_pwrd'>Change Password</button>
-        <button class='set-index' type="submit" name='display' value='manage_acc'>Privacy</button>
+    <form id='set-nav' action='#' method='get'>
+        <div class='set-menu'>
+            <button class='set-index' type="submit" name='display' value='view_info'>User Info</button>
+            <button class='set-index' type="submit" name='display' value='mod_mail'>Change Mail</button>
+            <button class='set-index' type="submit" name='display' value='mod_pwrd'>Change Password</button>
+            <button class='set-index' type="submit" name='display' value='manage_acc'>Privacy</button>
 <!--    <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label> -->
-  </div>
-    </div>
-    <div class='set-body'>
-        <div>
-        Lalal
         </div>
-    </div>
-    <br style="clear: left;" />
+    </form>
+    <form id='form-v1' action='#' method='post'>
+        <div class='set-body'>
+        <label for="uname"><b>Username</b></label>
+    <input require class='form-v1' type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input require class='form-v1' type="password" placeholder="Enter Password" name="psw" required>
+        
+    <button class='submit-button v1' type="submit">Login</button>
+<!--    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label> -->
+        </div>
+        <br style="clear: left;" />
 </div>
 </div>
 <?php

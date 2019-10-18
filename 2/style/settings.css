@@ -5,7 +5,7 @@ div.container-2 {
 div.set-menu {
     background-color: purple;
     float: left;
-    width: 40%;
+    width: 30%;
     min-height: 60vh;
     font-size: 30px;
     border-right: 5px solid black;
@@ -13,7 +13,6 @@ div.set-menu {
 
 button.set-index{
     background-color: rgb(215, 241, 167);
-    color: white;
     padding: 20px 20px;
     margin: 0;
     border: none;
@@ -22,6 +21,7 @@ button.set-index{
   }
 
 div.set-body {
-    float: right;
+    float: left;
     width: 60%;
+    background-color: gray;
 },
