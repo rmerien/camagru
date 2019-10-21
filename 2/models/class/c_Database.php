@@ -1,7 +1,9 @@
 <?php
 
+
 class Database
 {
+
     private static $_conn = NULL;
 
     public static function _pdoConnect($dsn, $user, $pword) {
@@ -21,12 +23,23 @@ class Database
     }
 
     public static function pdoQuery($sql, $params) {
+
+    include '../config/db_config.php';
+    if (!$_conn) {
         try {
-		    $query = self::$_conn->prepare($sql);
-	    	$query->execute($params);
-	    } catch (PDOException $e) {
-    	    throw new Exception($e->getMessage());
-	    }
+            echo 'bijknuladfsg';
+            self::_pdoConnect($DB_DSN, $DB_USER, $DB_PWORD);
+            echo 'isthatit';
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    try {
+        $query = self::$_conn->prepare($sql);
+        $query->execute($params);
+	} catch (PDOException $e) {
+        throw new Exception($e->getMessage());
+	}
     return ($query);
     }
 }

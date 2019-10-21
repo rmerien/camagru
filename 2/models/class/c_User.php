@@ -4,7 +4,7 @@ Class User
 {
 	public static function checkValidInfo($uname, $mail, $passwd, $oldpasswd) {
         try {
-			$allUsers = self::getAllUsers('username', 'mail');
+			$allUsers = self::getFromAllUsers('uname', 'mail');
 		} catch (Exception $e) {
 			throw $e;
 		}
@@ -20,8 +20,8 @@ Class User
 			}
 		}
 
-		if (preg_match('/^[a-zA-Z0-9]{3,30}+$/', $uname) !== 1 && $uname)
-			throw new Exception("Username is invalid.");
+		if (!preg_match('/^[a-zA-Z0-9]{3,30}+$/', $uname))
+			throw new Exception("The username can only be composed of alphanumerical characters.");
 		else
 		{
 			foreach($allUsers as $user)
@@ -42,12 +42,12 @@ Class User
             
         if ($oldpasswd)
         {
-            $sql = "SELECT * FROM `user` WHERE `uname` = :uname AND `passwd` = :oldpasswd";
+            $sql = "SELECT * FROM `user` WHERE `username` = :uname AND `passwd` = :oldpasswd";
             $param = array(
                 ':oldpasswd' => $oldpasswd
             );
             try {
-                $allUsers = self::getAllUsers('username', 'mail');
+                $allUsers = self::getFromAllUsers('username', 'mail');
             } catch (Exception $e) {
                 throw $e;
             }
@@ -55,14 +55,15 @@ Class User
         }
 	}
 
-	public static function newUser($uname, $mail, $passwd) {
+	public static function signUp($uname, $mail, $passwd) {
  		$allUsers = null;
 
 		try {
 			self::checkValidInfo(
 				$uname,
 				$mail,
-				$passwd
+				$passwd,
+				null
 			);
 		} catch (Exception $e) {
 			throw $e;
@@ -85,8 +86,8 @@ Class User
 		return ($handler);
 	}
 
-	public static function deleteAccount($uname) {
-		$sql = "DELETE FROM `user` WHERE `uname` = :uname";
+	public static function deleteUser($uname) {
+		$sql = "DELETE FROM `user` WHERE `username` = :uname";
 
 		$params = array(
 			':uname' => $uname
@@ -102,7 +103,7 @@ Class User
 
 	public static function signIn($uname, $passwd) {
 		$passwd = hash('sha512', $passwd);
-		$sql = "SELECT * FROM `user` WHERE `uname` = :uname AND `passwd` = :passwd";
+		$sql = "SELECT * FROM `user` WHERE `unsername` = :uname AND `passwd` = :passwd";
 
 		$params = array(
 			':uname'    => $uname,
@@ -110,7 +111,7 @@ Class User
 		);
 
 		try {
-            $handler = Database::pdoQuery($sql, $params);
+			$handler = Database::pdoQuery($sql, $params);
 		} catch (Exception $e) {
 			throw new Exception($e->getMessage());
 		}
@@ -150,7 +151,7 @@ Class User
 		}
 	}
 
-	public static function getAllUsers(...$toGet) {
+	public static function getFromAllUsers(...$toGet) {
 		$sql = "SELECT ";
 		$count = 0;
 		foreach ($toGet as $column) {
@@ -213,7 +214,7 @@ Class User
 			$params[':pword'] = hash('sha512', $updatedInfo['passwd']);
 		}
 		$sql = substr($sql, 0, -1);
-		$sql .= " WHERE `uname` = :uname";
+		$sql .= " WHERE `username` = :uname";
 
 		$params[':uname'] = $_SESSION['logged_on_user']['uname'];
 		try {
@@ -227,12 +228,29 @@ Class User
 		}
 	}
 
-	public static function updateUserPassword($uname, $pword) {
+	public static function updateUserPassword($uname, $oldpwd, $newpwd) {
 		try {
-			self::checkValidInfo(null, null, $pword, null, null);
+			self::checkValidInfo(null, null, $pword, null);
 			$sql = "UPDATE `user`
 					SET `passwd` = :pword 
-					WHERE `uname` = :uname";
+					WHERE `username` = :uname";
+
+			$params = array(
+				':pword' => hash('sha512', $pword),
+				':uname'    => $uname
+			);
+            $handler = Database::pdoQuery($sql, $params);
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+		}
+	}
+
+	public static function updateUserMail($uname, $mail) {
+		try {
+			self::checkValidInfo(null, null, $pword, null);
+			$sql = "UPDATE `user`
+					SET `passwd` = :pword 
+					WHERE `username` = :uname";
 
 			$params = array(
 				':pword' => hash('sha512', $pword),

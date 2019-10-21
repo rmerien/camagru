@@ -1,4 +1,6 @@
 
+/* Form v1 - Sign-in & Sign-Up pages */
+
 form.form-v1 {border: 3px solid #f1f1f1;
     max-width: 400px;
     margin: auto;
@@ -41,4 +43,16 @@ span.psw {
 p.error-alert {
   color: red;
   text-align: center;
+}
+
+/* Form v2 - Settings */
+
+button.form-v2{
+  background-color: rgb(250,100,200);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
 }

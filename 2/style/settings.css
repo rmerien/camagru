@@ -1,27 +1,31 @@
-div.container-2 {
-    height: 60vh
-}
+
 
 div.set-menu {
     background-color: purple;
-    float: left;
-    width: 30%;
-    min-height: 60vh;
     font-size: 30px;
     border-right: 5px solid black;
+    flex: 0 0 20vw;
 }
 
 button.set-index{
     background-color: rgb(215, 241, 167);
-    padding: 20px 20px;
+    padding: 13px 20px;
     margin: 0;
     border: none;
     cursor: pointer;
     width: 100%;
-  }
+    font-size: 17px;
+}
 
 div.set-body {
-    float: left;
-    width: 60%;
     background-color: gray;
-},
+    text-align: center;
+    flex-grow: 2;
+    flex: 1;
+}
+
+@media screen and (max-width: 800px) {
+    div.container-2 {
+        flex-direction: column;
+    }
+}
