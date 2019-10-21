@@ -27,9 +27,7 @@ class Database
     include '../config/db_config.php';
     if (!$_conn) {
         try {
-            echo 'bijknuladfsg';
             self::_pdoConnect($DB_DSN, $DB_USER, $DB_PWORD);
-            echo 'isthatit';
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

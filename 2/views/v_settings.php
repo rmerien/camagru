@@ -6,7 +6,7 @@ include './structure/v_pageStructure.php';
 
 echo $prePage;
 
-if ($_SESSION['logged_on_user']['uname'] ){//&& $_SESSION['logged_on_user']['mail_c']) {   ?>
+if ($_SESSION['logged_on_user']['username'] ){//&& $_SESSION['logged_on_user']['mail_c']) {   ?>
 
 <div class="page">
 <h2 class='page-title'>Settings</h2>

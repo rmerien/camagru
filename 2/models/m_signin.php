@@ -11,7 +11,7 @@ if (array_key_exists('uname', $_POST)
 		$status = User::signIn($_POST["uname"], $_POST["psw"]);
 	} catch (Exception $e) {
 		$_SESSION['error'] = "Error: " . $e->getMessage();
-		header('Location: ../views/v_signin.php');
+		//header('Location: ../views/v_signin.php');
 	}
 	session_regenerate_id();
 	echo "Welcome back " . $_SESSION['logged_on_user']['uname'] . "!";
@@ -19,5 +19,4 @@ if (array_key_exists('uname', $_POST)
 else
 	$_SESSION['error'] =  "Error: Missing or empty field";
 
-
-header('Location: ../views/v_signin.php');
+//header('Location: ../views/v_signin.php');

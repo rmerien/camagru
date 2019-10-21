@@ -3,7 +3,7 @@ session_start();
 include '../config/dir_config.php';
 if (isset($_SESSION['logged_on_user'])) {
 
-$nickname = strtoupper($_SESSION['logged_on_user']['uname']);
+$nickname = strtoupper($_SESSION['logged_on_user']['username']);
 $navbar = <<<NAV
 
 <div id='navbar'>

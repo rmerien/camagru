@@ -103,7 +103,7 @@ Class User
 
 	public static function signIn($uname, $passwd) {
 		$passwd = hash('sha512', $passwd);
-		$sql = "SELECT * FROM `user` WHERE `unsername` = :uname AND `passwd` = :passwd";
+		$sql = "SELECT * FROM `user` WHERE `username` = :uname AND `passwd` = :passwd";
 
 		$params = array(
 			':uname'    => $uname,
