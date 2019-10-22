@@ -1,6 +1,6 @@
 <?php
 
-header('Location: ../views/v_signin');
+header('Location: ../views/v_signin.php');
 
 session_start();
 include './class/c_user.php';
@@ -12,7 +12,7 @@ if (array_key_exists('uname', $_POST)
     try {
 		$status = User::signIn($_POST["uname"], $_POST["psw"]);
 	} catch (Exception $e) {
-		$_SESSION['error'] = "Error: gvhm" . $e->getMessage();
+		$_SESSION['error'] = "Error: " . $e->getMessage();
 	}
 	session_regenerate_id();
 	echo "Welcome back " . $_SESSION['logged_on_user']['uname'] . "!";
