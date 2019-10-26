@@ -13,4 +13,6 @@ $footer = <<<FOOTER
 	</div>
 </div>
 
+
+<script src="../models/js/navbar.js"></script>
 FOOTER;

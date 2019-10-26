@@ -14,6 +14,7 @@ Class Mail
     {
         $result = mail($this->_to, $this->_subject, $this->_message);
         var_dump($result);
+        echo error_get_last();
     }
 
     public function newAccount($user, $mail)
