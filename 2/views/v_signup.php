@@ -1,12 +1,12 @@
 <?PHP
 
-    $page = 'New Account';
+    $page = 'Sign Up';
 
      require './structure/v_pageStructure.php';
 
 echo $prePage; 
 
-if (!$_SESSION['logged_on_user']) {   ?>
+if (empty($_SESSION['logged_on_user'])) {   ?>
 
 <div class="page">
 <h2 class='page-title'>Sign Up</h2>

@@ -10,7 +10,7 @@ echo $prePage;
 
 <div class="page">
 
-
+    <h1>Account confirmed<
 
 </div>
 

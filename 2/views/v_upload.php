@@ -2,24 +2,23 @@
 
     $page = 'Upload';
 
-     require './structure/v_pageStructure.php';
+    include './structure/v_pageStructure.php';
 
-echo $prePage; 
+    echo $prePage; 
 
-if ($_SESSION['logged_on_user']) {   ?>
+if (!empty($_SESSION['logged_on_user']) { ?>
 
 <div class="page">
 
-    <h2 class='page-title'>Upload</h2>
-    <p class='error-alert'>
-    <?php
-        echo $_SESSION['error'];
-        unset($_SESSION['error']);
-    ?>
-    </p>
-
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="snap">Snap Photo</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <div><button onclick="to_image()">Draw to Image</button></div>
 
 </div>
+
+
+<script src="../models/js/picture.js"></script>
 
 <?php
 }
@@ -27,4 +26,4 @@ else {
     header("Location: ..");
 }
 
-echo $postPage; ?>
+echo $postPage; ?>    

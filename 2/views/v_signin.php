@@ -6,7 +6,7 @@
 
 echo $prePage; 
 
-if (!$_SESSION['logged_on_user']) {   ?>
+if (empty($_SESSION['logged_on_user'])) {   ?>
 
 <div class="page">
 <h2 class='page-title'>Sign In</h2>

@@ -1,60 +1,28 @@
-var videoObj    = { "video": true },
-    errBack        = function(error){
-        // alert("Video capture error: ", error.code);
-    };
+// Grab elements, create settings, etc.
+var video = document.getElementById('video');
 
-// Ask the browser for permission to use the Webcam
-if(navigator.getUserMedia){                    // Standard
-    navigator.getUserMedia(videoObj, startWebcam, errBack);
-}else if(navigator.webkitGetUserMedia){        // WebKit
-    navigator.webkitGetUserMedia(videoObj, startWebcam, errBack);
-}else if(navigator.mozGetUserMedia){        // Firefox
-    navigator.mozGetUserMedia(videoObj, startWebcam, errBack);
-};
-
-function startWebcam(stream){
-
-    var myOnlineCamera    = getElementById('myOnlineCamera'),
-        video            = myOnlineCamera.querySelectorAll('video'),
-        canvas            = myOnlineCamera.querySelectorAll('canvas');
-
-    video.width = video.offsetWidth;
-
-    if(navigator.getUserMedia){                    // Standard
-        video.src = stream;
+// Get access to the camera!
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Not adding `{ audio: true }` since we only want video now
+    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+        //video.src = window.URL.createObjectURL(stream);
+        video.srcObject = stream;
         video.play();
-    }else if(navigator.webkitGetUserMedia){        // WebKit
-        video.src = window.webkitURL.createObjectURL(stream);
-        video.play();
-    }else if(navigator.mozGetUserMedia){        // Firefox
-        video.src = window.URL.createObjectURL(stream);
-        video.play();
-    };
-
-    // Click to take the photo
-    $('#webcam-popup .takephoto').click(function(){
-        // Copying the image in a temporary canvas
-        var temp = document.createElement('canvas');
-
-        temp.width  = video.offsetWidth;
-        temp.height = video.offsetHeight;
-
-        var tempcontext = temp.getContext("2d"),
-            tempScale = (temp.height/temp.width);
-
-        temp.drawImage(
-            video,
-            0, 0,
-            video.offsetWidth, video.offsetHeight
-        );
-
-        // Resize it to the size of our canvas
-        canvas.style.height    = parseInt( canvas.offsetWidth * tempScale );
-        canvas.width        = canvas.offsetWidth;
-        canvas.height        = canvas.offsetHeight;
-        var context        = canvas.getContext("2d"),
-            scale        = canvas.width/temp.width;
-        context.scale(scale, scale);
-        context.drawImage(bigimage, 0, 0);
     });
-};
+}
+
+// Elements for taking the snapshot
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var video = document.getElementById('video');
+
+// Trigger photo take
+document.getElementById("snap").addEventListener("click", function() {
+	context.drawImage(video, 0, 0, 640, 480);
+});
+
+function to_image(){
+    var canvas = document.getElementById("thecanvas");
+    document.getElementById("theimage").src = canvas.toDataURL();
+    Canvas2Image.saveAsPNG(canvas);
+}
