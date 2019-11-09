@@ -33,7 +33,7 @@ Class Mail
     public function resetPassword($user, $mail)
     {
         $this->_to = $mail;
-        $this->_subject = "Reset password";˛
+        $this->_subject = "Reset password";
         $this->_headers = "From: noreply@camagru.com";
         $this->_message = "Hey $user";
         $this->_token = uniqid('rp_' . $user . '_');

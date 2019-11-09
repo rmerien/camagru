@@ -122,8 +122,6 @@ div.page {
 	#navbar {
 		padding: 5px !important;
 		text-align: center;
-		/*min-height: 30vh;
-		max-height: 50vh;*/
 		font-size: 1px !important;
 	}
 	#navbar img#logo {
@@ -144,7 +142,7 @@ div.page {
 		float: none !important;
 	}
 	div.page {
-		margin-top:30%;
+		margin-top:35%;
 		width: 100%;
 	}
 	#navbar span.menu-button {

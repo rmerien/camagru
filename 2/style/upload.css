@@ -1,6 +1,16 @@
-#camera {
-    width: 400px;
-    background-color: blue;
-    border: 10px solid black;
-    margin: 0 auto; 
+#video {
+    display: none;
+    max-width: 100%;
+    max-height: 70vh;
+}
+
+#preview, #canvas {
+    max-width: 100%;
+    max-height: 70vh;
+}
+
+@media screen and (max-width: 600px) {
+    #preview, #canvas {
+        max-width: 90vw;
+    }
 }
