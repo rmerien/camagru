@@ -11,7 +11,7 @@ function base64ToImage($imageData, $folder){
     print $success ? $fileName : 'Unable to save the file.';
 }
 */
-session_start();
+/*session_start();
 
 define('UPLOAD_DIR', '../img/' . $_SESSION['logged_on_user']['username'] . '/');
 
@@ -27,3 +27,6 @@ $data = base64_decode($img);
 $file = UPLOAD_DIR . uniqid() . '.jpeg';
 $success = file_put_contents($file, $data);
 print $success ? $file : 'Unable to save the file.';
+*/
+
+echo 'a';

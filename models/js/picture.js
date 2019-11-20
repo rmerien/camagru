@@ -63,17 +63,14 @@ function uploadPicture() {
 
     const data = document.getElementById('preview').src;
 
- /*   document.getElementById('hidden_data').value = data;
-
-    var fd = new FormData(document.forms["form1"]);
-*/
+    var xhr = getXHR('../models/m_upload.php');
 
     var fd = new FormData();
 
     fd.append("photo", data);
     var xhr = new XMLHttpRequest();
     console.log(xhr.status);
-    xhr.open('POST', '../models/m_upload.php', true);
+  //  xhr.open('POST', '../models/m_upload.php', true);
 
     xhr.onreadystatechange=function() 
     {

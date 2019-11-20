@@ -1,5 +1,4 @@
 <?php   
-
     $page = 'Feed';
 
     require './structure/v_pageStructure.php';
