@@ -1,9 +1,83 @@
+function addElems() {
+    const page = document.getElementById('page');
+    alert('addelems');
+
+    page.innerHTML += '<button id="snap">Take Picture</button>';
+    page.innerHTML += '<canvas id="canvas"></canvas>';
+    page.innerHTML += '<div id="strip"></div>';
+
+}
+
+function vidToCanvas() {
+    addElems();
+    var vid = document.getElementById('video');
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+
+    const width = vid.videoWidth;
+    const height = vid.videoHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    setInterval(function() {
+        context.drawImage(vid, 0, 0, width, height);
+    }, 15);
+}
+
+
+function getVideo() {
+    var vid = document.getElementById('video');
+
+    navigator.mediaDevices.getUserMedia({video: true, audio: false})
+        .then(function(stream) {
+            if ("srcObject" in video) {
+                vid.srcObject = stream;
+            } else {
+                vid.src = window.URL.createObjectURL(stream);
+            }
+            vid.onloadedmetadata = function(e) {
+                vid.play();
+            };
+        })
+        .catch(function(err) {
+            console.log(err.name + ": " + err.message);
+        });
+};
+
+/*
+** Initializes the video element. Waiting for a response to load the rest.
+*/
+
+function pageInit() {
+    const page = document.getElementById('page');
+
+    page.innerHTML = '<video id="video"></video>';
+    getVideo();
+    document.getElementById('video').addEventListener('canplay', vidToCanvas());
+}
+
+
+pageInit();
+
+
+
+
+
+
+
+
+
+/*
+
+
+
 function pageTakePic() {
     var page = document.getElementById('page');
 
     page.innerHTML = '<video id="video"></video>';
     page.innerHTML += '<button id="snap">SnopPhoto</button>';
     page.innerHTML += '<canvas id="canvas"></canvas>';
+    page.innerHTML += '<div id="strip"></div>';
     
     getVideo();
 
@@ -25,52 +99,27 @@ function pagePreview() {
     document.getElementById('up-btn').addEventListener("click", uploadPicture);
 }
 
-function getVideo() {
-    var vid = document.getElementById('video');
-
-    navigator.mediaDevices.getUserMedia({video: true, audio: false})
-        .then(function(stream) {
-            if ("srcObject" in video) {
-                vid.srcObject = stream;
-            } else {
-                vid.src = window.URL.createObjectURL(stream);
-            }
-            vid.onloadedmetadata = function(e) {
-                vid.play();
-            };
-        })
-        .catch(function(err) {
-            console.log(err.name + ": " + err.message);
-        });
-};
-
-function paintToCanvas() {
-    var vid = document.getElementById('video');
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-
-    const width = vid.videoWidth;
-    const height = vid.videoHeight;
-    canvas.width = width;
-    canvas.height = height;
-
-    setInterval(function() {
-        context.drawImage(vid, 0, 0, width, height);
-    }, 15);
-};
 
 function uploadPicture() {
 
-    const data = document.getElementById('preview').src;
+    var data = document.getElementById('preview').src;
+    var meta = data.substr(0, data.indexOf(','));
+    var ext = meta.substr(meta.indexOf('/') + 1, meta.indexOf(';') - meta.indexOf('/') - 1);
+    data = data.substr(data.indexOf(',') + 1);
 
-    var xhr = getXHR('../models/m_upload.php');
+    var xhr = getXHR();
+
+    xhr.open('POST', '../models/m_upload.php', true);
+    
+    xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
 
     var fd = new FormData();
 
-    fd.append("photo", data);
-    var xhr = new XMLHttpRequest();
+    fd.append('data', data);
+    fd.append('ext', ext);
+
+
     console.log(xhr.status);
-  //  xhr.open('POST', '../models/m_upload.php', true);
 
     xhr.onreadystatechange=function() 
     {
@@ -91,7 +140,7 @@ function uploadPicture() {
 
 function takePhoto() {
     const data = document.getElementById('canvas').toDataURL('image/jpeg');
-    pagePreview();
+    //pagePreview();
 
     const strip = document.getElementById('strip');
 
@@ -103,4 +152,4 @@ function takePhoto() {
 
 };
 
-pageTakePic();
+//pageTakePic();*/

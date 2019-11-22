@@ -12,7 +12,7 @@ if (!empty($_SESSION['logged_on_user'])) { ?>
     <!-- page loaded with JS -->
 </div>
 
-<script src="../models/js/picture.js"></script>
+<script type="text/javascript" src="../models/js/picture.js"></script>
 
 <?php
 

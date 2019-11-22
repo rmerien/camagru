@@ -1,14 +1,14 @@
-var getXHR = function (path) {
+function getXHR() {
     
-    var xhr = false;
-  
-    if (window.XMLxhr) { // Mozilla, Safari,...
-      xhr = new XMLxhr();
+    var xhr;
+
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
       if (xhr.overrideMimeType) {
         xhr.overrideMimeType('text/xml');
       }
     }
-    else if (window.ActiveXObject) { // IE
+    else if (window.ActiveXObject) {
       try {
         xhr = new ActiveXObject("Msxml2.XMLHTTP");
       }
@@ -24,11 +24,8 @@ var getXHR = function (path) {
       alert('Failure to create XMLHTTP instance');
       return false;
     }
-  
-    var xhr = getHttpRequest();
-    xhr.open('POST', path, true);
-    
-    xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
-
     return xhr;
-  }
+
+
+
+}
