@@ -1,16 +1,16 @@
 function addElems() {
     const page = document.getElementById('page');
-    alert('addelems');
 
     page.innerHTML += '<button id="snap">Take Picture</button>';
     page.innerHTML += '<canvas id="canvas"></canvas>';
     page.innerHTML += '<div id="strip"></div>';
-
+    alert('elem');
 }
 
+
 function vidToCanvas() {
-    addElems();
     var vid = document.getElementById('video');
+    alert(vid);
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
 
@@ -18,7 +18,7 @@ function vidToCanvas() {
     const height = vid.videoHeight;
     canvas.width = width;
     canvas.height = height;
-
+    alert('mesurasti:: ' + width + height);
     setInterval(function() {
         context.drawImage(vid, 0, 0, width, height);
     }, 15);
@@ -38,11 +38,13 @@ function getVideo() {
             vid.onloadedmetadata = function(e) {
                 vid.play();
             };
+            alert('this should be fine');
         })
         .catch(function(err) {
             console.log(err.name + ": " + err.message);
         });
 };
+
 
 /*
 ** Initializes the video element. Waiting for a response to load the rest.
@@ -53,11 +55,30 @@ function pageInit() {
 
     page.innerHTML = '<video id="video"></video>';
     getVideo();
-    document.getElementById('video').addEventListener('canplay', vidToCanvas());
+    document.getElementById('video').addEventListener('canplay', addElems);
+    document.getElementById('video').addEventListener('canplay', vidToCanvas);
 }
 
 
 pageInit();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
