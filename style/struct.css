@@ -128,7 +128,6 @@ div.page {
 		height: 9vh;
 		max-width: 95%;
 		margin: 0;
-		background-color: brown;
 	}
 	#navbar .menu-button {
 		float: none;
@@ -136,7 +135,6 @@ div.page {
 		text-align: left;
 		padding: 0 12px !important;
 		line-height: normal;
-		background-color: yellowgreen;
 	}
 	#nav-right {
 		float: none !important;

@@ -1,16 +1,30 @@
+function takePhoto() {
+    const data = document.getElementById('canvas').toDataURL('image/jpeg');
+
+    const strip = document.getElementById('strip');
+
+    const link = document.createElement('a');
+    link.href = data;
+    link.innerHTML = `<img src="${data}" class='up-preview' alt="your picture" id='preview'/>`;
+    strip.insertBefore(link, strip.firstChild);
+}
+
 function addElems() {
     const page = document.getElementById('page');
 
+    page.innerHTML = '<video id="video"></video>';
     page.innerHTML += '<button id="snap">Take Picture</button>';
     page.innerHTML += '<canvas id="canvas"></canvas>';
     page.innerHTML += '<div id="strip"></div>';
-    alert('elem');
+
+    getVideo();
+    document.getElementById('video').addEventListener('canplay', vidToCanvas);
+    document.getElementById('snap').addEventListener('click', takePhoto);
 }
 
 
 function vidToCanvas() {
     var vid = document.getElementById('video');
-    alert(vid);
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
 
@@ -18,7 +32,7 @@ function vidToCanvas() {
     const height = vid.videoHeight;
     canvas.width = width;
     canvas.height = height;
-    alert('mesurasti:: ' + width + height);
+
     setInterval(function() {
         context.drawImage(vid, 0, 0, width, height);
     }, 15);
@@ -26,6 +40,7 @@ function vidToCanvas() {
 
 
 function getVideo() {
+    
     var vid = document.getElementById('video');
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
@@ -38,13 +53,11 @@ function getVideo() {
             vid.onloadedmetadata = function(e) {
                 vid.play();
             };
-            alert('this should be fine');
         })
         .catch(function(err) {
             console.log(err.name + ": " + err.message);
         });
 };
-
 
 /*
 ** Initializes the video element. Waiting for a response to load the rest.
@@ -52,11 +65,12 @@ function getVideo() {
 
 function pageInit() {
     const page = document.getElementById('page');
-
     page.innerHTML = '<video id="video"></video>';
+    page.innerHTML += '<div class="loader"></div>';
+    
     getVideo();
+
     document.getElementById('video').addEventListener('canplay', addElems);
-    document.getElementById('video').addEventListener('canplay', vidToCanvas);
 }
 
 
