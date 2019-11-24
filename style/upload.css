@@ -1,16 +1,30 @@
+#up-strip {
+    float: right;
+    width: 30%;
+    border: thick double #32a1ce;
+}
+
+#up-main {
+    width: 65%;
+    height: 70vh;
+}
+
 #video {
     display: none;
-    max-width: 100%;
-    max-height: 70vh;
 }
 
 #preview, #canvas {
     max-width: 100%;
-    max-height: 70vh;
 }
 
 @media screen and (max-width: 600px) {
     #preview, #canvas {
+        max-width: 90vw;
+    }
+    #up-strip {
+        max-width: 90vw;
+    }
+    #up-main {
         max-width: 90vw;
     }
 }

@@ -1,7 +1,7 @@
 function takePhoto() {
     const data = document.getElementById('canvas').toDataURL('image/jpeg');
 
-    const strip = document.getElementById('strip');
+    const strip = document.getElementById('up-strip');
 
     const link = document.createElement('a');
     link.href = data;
@@ -10,12 +10,11 @@ function takePhoto() {
 }
 
 function addElems() {
-    const page = document.getElementById('page');
+    const main = document.getElementById('up-main');
 
-    page.innerHTML = '<video id="video"></video>';
-    page.innerHTML += '<button id="snap">Take Picture</button>';
-    page.innerHTML += '<canvas id="canvas"></canvas>';
-    page.innerHTML += '<div id="strip"></div>';
+    main.innerHTML = '<video id="video"></video>';
+    main.innerHTML += '<button id="snap">Take Picture</button>';
+    main.innerHTML += '<canvas id="canvas"></canvas>';
 
     getVideo();
     document.getElementById('video').addEventListener('canplay', vidToCanvas);
@@ -63,10 +62,10 @@ function getVideo() {
 ** Initializes the video element. Waiting for a response to load the rest.
 */
 
-function pageInit() {
-    const page = document.getElementById('page');
-    page.innerHTML = '<video id="video"></video>';
-    page.innerHTML += '<div class="loader"></div>';
+function mainInit() {
+    const main = document.getElementById('up-main');
+    main.innerHTML = '<video id="video"></video>';
+    main.innerHTML += '<div class="lds-dual-ring"></div>';
     
     getVideo();
 
@@ -74,7 +73,7 @@ function pageInit() {
 }
 
 
-pageInit();
+mainInit();
 
 
 
@@ -104,35 +103,6 @@ pageInit();
 
 /*
 
-
-
-function pageTakePic() {
-    var page = document.getElementById('page');
-
-    page.innerHTML = '<video id="video"></video>';
-    page.innerHTML += '<button id="snap">SnopPhoto</button>';
-    page.innerHTML += '<canvas id="canvas"></canvas>';
-    page.innerHTML += '<div id="strip"></div>';
-    
-    getVideo();
-
-    document.getElementById('video').addEventListener('canplay', paintToCanvas);
-    document.getElementById('snap').addEventListener('click', takePhoto);
-}
-
-function pagePreview() {
-    var page = document.getElementById('page');
-
-    page.innerHTML = ""
-    page.innerHTML = '<div id="strip"></div>';
-    page.innerHTML += '<input type="button" id="up-btn" value="Upload" />';
-    page.innerHTML += '<input type="button" id="re-btn" value="Retake" />';
-    page.innerHTML += '<form method="post" accept-charset="utf-8" name="form1">';
-    page.innerHTML += '<input name="hidden_data" id="hidden_data" type="hidden"/></form>';
-
-    document.getElementById('re-btn').addEventListener("click", pageTakePic);
-    document.getElementById('up-btn').addEventListener("click", uploadPicture);
-}
 
 
 function uploadPicture() {
@@ -173,18 +143,5 @@ function uploadPicture() {
 
 };
 
-function takePhoto() {
-    const data = document.getElementById('canvas').toDataURL('image/jpeg');
-    //pagePreview();
 
-    const strip = document.getElementById('strip');
-
-    const link = document.createElement('a');
-    link.href = data;
-    link.setAttribute('download', 'handsome');
-    link.innerHTML = `<img src="${data}" alt="your picture" id='preview'/>`;
-    strip.innerHTML = link.innerHTML;
-
-};
-
-//pageTakePic();*/
+//mainTakePic();*/
