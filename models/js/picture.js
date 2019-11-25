@@ -5,7 +5,7 @@ function takePhoto() {
 
     const link = document.createElement('a');
     link.href = data;
-    link.innerHTML = `<img src="${data}" class='up-preview' alt="your picture" id='preview'/>`;
+    link.innerHTML = `<div class='up-preview'><img src="${data}" alt="your picture" id='preview-pic'/></div>`;
     strip.insertBefore(link, strip.firstChild);
 }
 
@@ -13,8 +13,8 @@ function addElems() {
     const main = document.getElementById('up-main');
 
     main.innerHTML = '<video id="video"></video>';
+    main.innerHTML += '<canvas id="canvas"></canvas><br>';
     main.innerHTML += '<button id="snap">Take Picture</button>';
-    main.innerHTML += '<canvas id="canvas"></canvas>';
 
     getVideo();
     document.getElementById('video').addEventListener('canplay', vidToCanvas);
@@ -63,9 +63,8 @@ function getVideo() {
 */
 
 function mainInit() {
-    const main = document.getElementById('up-main');
-    main.innerHTML = '<video id="video"></video>';
-    main.innerHTML += '<div class="lds-dual-ring"></div>';
+    document.getElementById('up-main').innerHTML = '<video id="video"></video>';
+    document.getElementById('up-main').innerHTML += '<div class="lds-dual-ring"></div>';
     
     getVideo();
 
