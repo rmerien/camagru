@@ -1,13 +1,13 @@
 #up-strip {
     display: block;
     border: thick double #32a1ce;
-    width: 35%;
+    width: 30%;
     margin-left: 5%;
 }
 
 #up-main {
     display: block;
-    width: 60%;
+    width: 65%;
     height: 70vh;
 }
 
@@ -17,7 +17,28 @@
 }
 
 .up-preview {
-    width: 100%;
+    position: relative;
+    max-width: 100%;
+}
+
+.preview-pic {
+    max-width: 100%;
+}
+
+.up-pv {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+
 }
 
 #video {
@@ -29,12 +50,13 @@
 
 @media screen and (max-width: 600px) {
     #preview, #canvas {
-        max-width: 90vw;
+        width: 100%;
     }
     #up-strip {
-        max-width: 90vw;
+        width: 100%;
     }
     #up-main {
-        max-width: 90vw;
+        margin-top: 6%;
+        width: 100%;
     }
 }

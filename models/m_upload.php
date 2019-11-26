@@ -8,6 +8,7 @@ $uid = $_SESSION['logged_on_user']['uid'];
 if ($uid) {
     $ext = $_POST['ext'];
     $b64_data = $_POST['data'];
+    $caption = $_POST['caption'];
     $data = base64_decode($b64_data);
 
     $folder = '../img/' . $uid . '/';
@@ -23,7 +24,7 @@ if ($uid) {
         echo 'Upload Failed: Error code 1';
     }
 
-  //  Image::addImage();
+    Image::addImage($uid, $img_name, $caption);
 }
 
 

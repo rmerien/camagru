@@ -1,12 +1,39 @@
+function uploadBtn() {
+    var data = this.parentElement.children.pvpic.src;
+    var caption = prompt('Add a caption:', '');
+    while (caption.length > 200) {
+        alert('Caption: maximum lenght: 200 characters')
+        caption = prompt('Add a caption:', '');
+    }
+    if (uploadToWebsite(data, caption)) {
+        this.parentElement.parentElement.removeChild(this.parentElement.parentElement);
+    } else {
+        alert('Failed to upload picture, try again later');
+    }
+
+}
+
+function prevOnClick() {
+    btn = this.children.upbtn;
+    if (!(btn)) {
+        this.innerHTML += '<button class="up-pv" name="upbtn">Upload</button>';
+        btn = this.children.upbtn;
+    } else {
+        this.removeChild(btn);
+    }
+    btn.addEventListener('click', uploadBtn)
+}
+
 function takePhoto() {
     const data = document.getElementById('canvas').toDataURL('image/jpeg');
 
     const strip = document.getElementById('up-strip');
 
-    const link = document.createElement('a');
-    link.href = data;
-    link.innerHTML = `<div class='up-preview'><img src="${data}" alt="your picture" id='preview-pic'/></div>`;
-    strip.insertBefore(link, strip.firstChild);
+    const img = document.createElement('div');
+    img.classList.add('up-preview');
+    img.innerHTML = `<img src="${data}" name='pvpic' alt="your picture" class='preview-pic'/>`;
+    img.addEventListener('click', prevOnClick);
+    strip.insertBefore(img, strip.firstChild);
 }
 
 function addElems() {
@@ -96,17 +123,8 @@ mainInit();
 
 
 
+function uploadToWebsite(data, caption) {
 
-
-
-
-/*
-
-
-
-function uploadPicture() {
-
-    var data = document.getElementById('preview').src;
     var meta = data.substr(0, data.indexOf(','));
     var ext = meta.substr(meta.indexOf('/') + 1, meta.indexOf(';') - meta.indexOf('/') - 1);
     data = data.substr(data.indexOf(',') + 1);
@@ -121,7 +139,7 @@ function uploadPicture() {
 
     fd.append('data', data);
     fd.append('ext', ext);
-
+    fd.append('caption', caption);
 
     console.log(xhr.status);
 
@@ -141,6 +159,3 @@ function uploadPicture() {
     xhr.send(fd);
 
 };
-
-
-//mainTakePic();*/
