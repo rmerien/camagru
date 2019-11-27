@@ -1,28 +1,25 @@
-var vid = document.getElementById('video');
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-const strip = document.getElementById('strip');
-//const snap = document.getElementById('snap');
+var _validFileExtensions = [".jpg", ".jpeg", ".png"];
 
-
-function getVideo() {
-
-    alert('lolsdaf');
-
-    navigator.mediaDevices.getUserMedia({video: true, audio: false})
-        .then(function(stream) {
-            if ("srcObject" in video) {
-                vid.srcObject = stream;
-            } else {
-                vid.src = window.URL.createObjectURL(stream);
+function validUploadInput(input) {
+    console.log(input.value);
+    if (input.type == "file") {
+        var fileName = input.value;
+         if (fileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var extension = _validFileExtensions[j];
+                if (fileName.substr(fileName.length - extension.length, extension.length).toLowerCase() == extension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
             }
-            vid.onloadedmetadata = function(e) {
-                vid.play();
-            };
-        })
-        .catch(function(err) {
-            console.log(err.name + ": " + err.message);
-        });
-};
-
-getVideo(); 
+             
+            if (!blnValid) {
+                alert("Sorry, " + fileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                input.value = "";
+                return false;
+            }
+        }
+    }
+    return true;
+}
