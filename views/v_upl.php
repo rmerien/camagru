@@ -15,7 +15,7 @@ if (!empty($_SESSION['logged_on_user'])) { ?>
     </div>
 </div>
 
-<script type="text/javascript" src="../models/js/upload.js"></script>
+<script type="text/javascript" src="../models/js/upl.js"></script>
 <script type="text/javascript" src="../models/js/save_file.js"></script>
 <script type="text/javascript" src="../models/js/image_mod.js"></script>
 
