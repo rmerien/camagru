@@ -12,16 +12,7 @@
     }
 }
 
-function prevOnClick() {
-    btn = this.children.upbtn;
-    if (!(btn)) {
-        this.innerHTML += '<button class="up-pv" name="upbtn">Upload</button>';
-        btn = this.children.upbtn;
-    } else {
-        this.removeChild(btn);
-    }
-    btn.addEventListener('click', uploadBtn)
-}
+
 
 function handleFileSelect(evt) {
     alert(evt);
@@ -80,6 +71,12 @@ function uplMainInit() {
                 canvas.width = width;
                 canvas.height = height;
                 context.drawImage(img, 0, 0);
+                
+                const button = document.createElement('button');
+                button.setAttribute('id', 'snap');
+                button.addEventListener('click', takePhoto);
+                button.appendChild( document.createTextNode("Submit") );
+                main.appendChild( button );
             }
             img.src = reader.result;
             console.log(img.src);
