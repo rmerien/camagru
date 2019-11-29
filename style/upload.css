@@ -12,7 +12,8 @@
 }
 
 #canvas {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
     border: thick double #32a1ce;
 }
 
