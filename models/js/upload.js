@@ -7,7 +7,6 @@ function addElems() {
     main.innerHTML += '<button id="snap">Take Picture</button>';
 
     test = getVideo();
-    alert(test);
     document.getElementById('video').addEventListener('canplay', vidToCanvas);
     document.getElementById('snap').addEventListener('click', takePhoto);
 }

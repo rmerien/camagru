@@ -52,7 +52,12 @@ function uplMainInit() {
     const main = document.getElementById('up-main');
     const strip = document.getElementById('up-strip');
 
-    main.innerHTML = '<input type="file" id="file"  />';
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/png, image/jpeg, image/jpg');
+    input.setAttribute('id', 'file');
+    main.appendChild(input);
+    //main.innerHTML = '<input type="file" id="file" accept="image/png, image/jpeg, image"/>';
     main.innerHTML += '<canvas id="canvas"></canvas><br>';
 
     const input = document.getElementById('file');
@@ -64,6 +69,7 @@ function uplMainInit() {
         reader.onload = function() {
             const img = new Image();
             img.onload = function() {
+                //Draw Image On Canvas
                 const canvas = document.getElementById('canvas');
                 const context = canvas.getContext('2d');
                 const width = img.naturalWidth;
@@ -71,12 +77,12 @@ function uplMainInit() {
                 canvas.width = width;
                 canvas.height = height;
                 context.drawImage(img, 0, 0);
-                
+                //Create Button For Upload
                 const button = document.createElement('button');
                 button.setAttribute('id', 'snap');
                 button.addEventListener('click', takePhoto);
                 button.appendChild( document.createTextNode("Submit") );
-                main.appendChild( button );
+                main.appendChild(button);
             }
             img.src = reader.result;
             console.log(img.src);

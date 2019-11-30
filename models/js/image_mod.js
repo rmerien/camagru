@@ -1,29 +1,28 @@
 function prevOnClick() {
     const btn = this.children.upbtn;
-    const btnDel = this.children.upbtn;
-    if (!(btn)) {
+    const btnDel = this.children.delbtn;
+    if (!(this.children.upbtn)) {
+        //Display Upload and Delete button on Image Preview
         const btn = document.createElement('button');
         btn.setAttribute('class', 'up-pv');
         btn.setAttribute('name', 'upbtn');
-        btn.addEventListener('click', takePhoto);
         btn.appendChild(document.createTextNode("Upload"));
+        btn.addEventListener('click', uploadBtn);
         this.appendChild(btn);
-
 
         const btnDel = document.createElement('button');
         btnDel.setAttribute('class', 'del-pv');
         btnDel.setAttribute('name', 'delbtn');
-        btnDel.addEventListener('click', function() {
-            console.log(this + ' lol');
-        });
         btnDel.appendChild(document.createTextNode("X"));
         this.appendChild(btnDel);
+        btnDel.addEventListener('click', function() {
+            this.parentElement.parentElement.removeChild(this.parentElement);
+        });
 
     } else {
-        this.removeChild(btn);
-        this.removeChild(btnDel);
+        this.removeChild(this.children.upbtn);
+        this.removeChild(this.children.delbtn);
     }
-    btn.addEventListener('click', uploadBtn)
 }
 
 function takePhoto() {

@@ -1,3 +1,18 @@
+function uploadBtn() {
+    var data = this.parentElement.children.pvpic.src;
+    var caption = '';
+    caption = prompt('Add a caption:', '');
+    while (caption.length > 200) {
+        alert('Caption: maximum lenght: 200 characters')
+        caption = prompt('Add a caption:', '');
+    }
+    if (uploadToWebsite(data, caption)) {
+        this.parentElement.parentElement.removeChild(this.parentElement.parentElement);
+    } else {
+        alert('Failed to upload picture, try again later');
+    }
+}
+
 function uploadToWebsite(data, caption) {
 
     var meta = data.substr(0, data.indexOf(','));
