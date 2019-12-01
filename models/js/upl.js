@@ -57,10 +57,12 @@ function uplMainInit() {
     input.setAttribute('accept', 'image/png, image/jpeg, image/jpg');
     input.setAttribute('id', 'file');
     main.appendChild(input);
-    //main.innerHTML = '<input type="file" id="file" accept="image/png, image/jpeg, image"/>';
-    main.innerHTML += '<canvas id="canvas"></canvas><br>';
+    
+    main.appendChild(document.createElement('br'));
 
-    const input = document.getElementById('file');
+    const canvas = document.createElement('canvas');
+    canvas.setAttribute('id', 'canvas');
+    main.appendChild(canvas);
 
     input.addEventListener('change', function (e) {
         alert('lol');

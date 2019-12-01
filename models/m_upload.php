@@ -23,8 +23,8 @@ if ($uid) {
     if (!$success) {
         echo 'Upload Failed: Error code 1';
     }
-
-    Image::addImage($uid, $img_name, $caption);
+    echo $img_name;
+    //Image::addImage($uid, $img_name, $caption);
 }
 
 
