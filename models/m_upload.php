@@ -27,10 +27,9 @@ if ($uid) {
         echo 'Upload Failed: Error code 1';
         return;
     }
-    echo $img_name;
-    $success = Image::addImage($uid, $img_name, $caption);
-    if (!$success) {
+    try {
+        Image::addImage($uid, $img_name, $caption);
+    } catch (Exception $e) {
         echo 'Upload Failed: Error code 2';
-        return;
     }
 }

@@ -32,21 +32,12 @@ function uploadToWebsite(data, caption) {
     fd.append('ext', ext);
     fd.append('caption', caption);
 
-    console.log(xhr.status);
-
-    xhr.onreadystatechange=function() 
-    {
-        if(xhr.readyState==4)
-        alert("status " + xhr.status);
-    }
     xhr.upload.onprogress = function(e) {
         if (e.lengthComputable) {
             var percentComplete = (e.loaded / e.total) * 100;
             console.log(percentComplete + '% uploaded');
-            alert('Succesfully uploaded');
             console.log(xhr.responseText);
         }
     };
-    xhr.send(fd);
-
+    xhr.send(fd);   
 };

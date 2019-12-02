@@ -10,42 +10,7 @@
     } else {
         alert('Failed to upload picture, try again later');
     }
-}
-
-
-
-function handleFileSelect(evt) {
-    alert(evt);
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
-  
-        var files = evt.target.files; // FileList object
-
-        const reader = new FileReader();
-        reader.onload = function () {
-
-        }
-    
-        const img = new Image();
-        img.onload = function () {
-            const canvas = document.getElementById('canvas');
-            const context = canvas.getContext('2d');
-            context.drawImage(img, 0, 0);
-        }
-        console.log(files);
-
-    // files is a FileList of File objects. List some properties.
-        var output = [];
-        for (var i = 0, f; f = files[i]; i++) {
-        output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                    f.size, ' bytes, last modified: ',
-                    f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-                    '</li>');
-        }
-        document.getElementById('up-strip').innerHTML = '<ul>' + output.join('') + '</ul>';
-    } else {
-        alert('The File APIs are not fully supported in this browser.');
-    }
-  }*/
+}*/
 
 function uplMainInit() {
 
@@ -65,57 +30,40 @@ function uplMainInit() {
     main.appendChild(canvas);
 
     input.addEventListener('change', function (e) {
-        alert('lol');
-        console.log(input.files);
-        const reader = new FileReader();
-        reader.onload = function() {
-            const img = new Image();
-            img.onload = function() {
-                //Draw Image On Canvas
-                const canvas = document.getElementById('canvas');
-                const context = canvas.getContext('2d');
-                const width = img.naturalWidth;
-                const height = img.naturalHeight;
-                canvas.width = width;
-                canvas.height = height;
-                context.drawImage(img, 0, 0);
-                //Create Button For Upload
-                const button = document.createElement('button');
-                button.setAttribute('id', 'snap');
-                button.addEventListener('click', takePhoto);
-                button.appendChild( document.createTextNode("Submit") );
-                main.appendChild(button);
+        //Check if the API for reading files are available
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+
+            const reader = new FileReader();
+            reader.onload = function() {
+                const img = new Image();
+                img.onload = function() {
+                    //Draw Image On Canvas
+                    const canvas = document.getElementById('canvas');
+                    const context = canvas.getContext('2d');
+                    const width = img.naturalWidth;
+                    const height = img.naturalHeight;
+                    canvas.width = width;
+                    canvas.height = height;
+                    context.drawImage(img, 0, 0);
+                    //Create Button For Upload
+                    const button = document.createElement('button');
+                    button.setAttribute('id', 'snap');
+                    button.addEventListener('click', takePhoto);
+                    button.appendChild( document.createTextNode("Submit") );
+                    main.appendChild(button);
+                }
+                img.src = reader.result;
+                console.log(img.src);
             }
-            img.src = reader.result;
-            console.log(img.src);
-        }
-        if (reader.readAsDataURL) {
-            reader.readAsDataURL(input.files[0]);
-        } else if (reader.readAsDataurl) {
-            reader.readAsDataurl(input.files[0]);
-        }
+            if (reader.readAsDataURL) {
+                reader.readAsDataURL(input.files[0]);
+            } else if (reader.readAsDataurl) {
+                reader.readAsDataurl(input.files[0]);
+            }
+        } else {
+            alert('The File APIs are not fully supported in this browser.');
+    }
     }, false);
-    
-    /*input.addEventListener('change', function (e) {
-        accept="image/png, image/jpeg, image"
-        console.log(input.files);
-        const reader = new FileReader();
-        reader.onload = function () {
-
-        }
-        const img = new Image();
-        img.onload = function () {
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            context.drawImage(img, 0, 0);
-        }
-        img.src = reader.result;
-        document.body.appendChild(img);
-    });
-
-    main.innerHTML += '<canvas id="canvas"></canvas><br>';
-   // main.innerHTML += '<button id="snap">Take Picture</button>';*/
 }
 
 uplMainInit();
-//onchange="validUploadInput(this);

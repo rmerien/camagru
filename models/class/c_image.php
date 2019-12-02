@@ -2,22 +2,21 @@
 
 class Image
 {
-    public static function newImage($uid, $path, $caption)
+    public static function addImage($uid, $path, $caption)
     {
-        include '../config/db_config.php';
-        if (!self::$_conn) {
-            try {
-                self::_pdoConnect($DB_DSN, $DB_USER, $DB_PWORD);
-            } catch (Exception $e) {
-                throw new Exception($e->getMessage());
-            }
-        }
-        try {
-            $query = self::$_conn->prepare($sql);
-            $query->execute($params);
-	    } catch (PDOException $e) {
-            throw new Exception($e->getMessage());
-	    }
-        return ($query);
-    }
+		$sql = "INSERT INTO `image` (`uid`, `path`, `caption`)
+				VALUES (:uid, :path, :caption)";
+		$params = array(
+			':uid'    => $uid,
+			':path'     => $path,
+			':caption'   => $caption
+		);
+
+		try {
+			$handler = Database::pdoQuery($sql, $params);
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+		}
+		return ($handler);
+	}
 }
