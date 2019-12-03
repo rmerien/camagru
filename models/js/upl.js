@@ -53,7 +53,6 @@ function uplMainInit() {
                     main.appendChild(button);
                 }
                 img.src = reader.result;
-                console.log(img.src);
             }
             if (reader.readAsDataURL) {
                 reader.readAsDataURL(input.files[0]);

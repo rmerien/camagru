@@ -6,8 +6,8 @@ function uploadBtn() {
             alert('Caption: maximum lenght: 200 characters')
             caption = prompt('Add a caption:', '');
         }
-        if (uploadToWebsite(data, caption)) {
-            this.parentElement.parentElement.removeChild(this.parentElement.parentElement);
+        if (!uploadToWebsite(data, caption)) {
+            this.parentElement.parentElement.removeChild(this.parentElement);
         } else {
             alert('Failed to upload picture, try again later');
         }
@@ -36,8 +36,13 @@ function uploadToWebsite(data, caption) {
         if (e.lengthComputable) {
             var percentComplete = (e.loaded / e.total) * 100;
             console.log(percentComplete + '% uploaded');
-            console.log(xhr.responseText);
+            if (xhr.responseText) {
+                console.error(xhr.responseText);
+                return 1;
+            } else {
+                return 0;
+            }
         }
     };
-    xhr.send(fd);   
+    xhr.send(fd);
 };
