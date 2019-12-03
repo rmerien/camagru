@@ -30,9 +30,16 @@ function takePhoto() {
 
     const strip = document.getElementById('up-strip');
 
-    const img = document.createElement('div');
-    img.classList.add('up-preview');
-    img.innerHTML = `<img src="${data}" name='pvpic' alt="your picture" class='preview-pic'/>`;
-    img.addEventListener('click', prevOnClick);
-    strip.insertBefore(img, strip.firstChild);
+    const imgPV = document.createElement('div');
+    imgPV.classList.add('up-preview');
+    imgPV.addEventListener('click', prevOnClick);
+
+    const imgElem = document.createElement('img');
+    imgElem.setAttribute('class', 'preview-pic');
+    imgElem.setAttribute('alt', 'Your Picture');
+    imgElem.setAttribute('src', `${data}`);
+    imgElem.setAttribute('name', 'pvpic');
+   // imgPV.innerHTML = `<img src="${data}" name='pvpic' alt="your picture" class='preview-pic'/>`;
+    imgPV.appendChild(imgElem);
+    strip.insertBefore(imgPV, strip.firstChild);
 }

@@ -1,21 +1,22 @@
 #up-strip {
     display: block;
-    border: thick double #32a1ce;
     width: 30%;
     margin-left: 5%;
+    background-color: pink;
 }
 
 #up-main {
+    background-color: #BADA55;
     display: block;
     width: 65%;
-    height: 70vh;
+    min-height: 70vh;
 }
 
-#canvas {
+/*#canvas {
     max-width: 100%;
     max-height: 100%;
     border: thick double #32a1ce;
-}
+}*/
 
 .up-preview {
     position: relative;
@@ -65,14 +66,16 @@
 }
 
 @media screen and (max-width: 600px) {
-    #preview, #canvas {
+    #canvas {
         width: 100%;
+        margin-left: default;
     }
     #up-strip {
         width: 100%;
+        margin: 0;
     }
     #up-main {
-        margin-top: 6%;
+        margin: 6% 0;
         width: 100%;
     }
 }
