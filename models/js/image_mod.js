@@ -6,14 +6,14 @@ function prevOnClick() {
         const btn = document.createElement('button');
         btn.setAttribute('class', 'up-pv');
         btn.setAttribute('name', 'upbtn');
-        btn.appendChild(document.createTextNode("Upload"));
+        btn.textContent('Upload');
         btn.addEventListener('click', uploadBtn);
         this.appendChild(btn);
 
         const btnDel = document.createElement('button');
         btnDel.setAttribute('class', 'del-pv');
         btnDel.setAttribute('name', 'delbtn');
-        btnDel.appendChild(document.createTextNode("X"));
+        btnDel.textContent('X')
         this.appendChild(btnDel);
         btnDel.addEventListener('click', function() {
             this.parentElement.parentElement.removeChild(this.parentElement);
