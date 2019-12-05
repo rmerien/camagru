@@ -1,14 +1,18 @@
 
 function addElems() {
     const main = document.getElementById('up-main');
+    const canvas = document.createElement('canvas');
+    const snap = document.createElement('button');
 
-    main.innerHTML = '<video id="video"></video>';
-    main.innerHTML += '<canvas id="canvas"></canvas><br>';
-    main.innerHTML += '<button id="snap">Take Picture</button>';
+    canvas.setAttribute('id', 'canvas');
+    snap.setAttribute('id', 'snap');
+    snap.textContent('Take Picture');
+    snap.addEventListener('click', takePhoto);
+
+    main.appendChild(canvas);
+    main.appendChild(snap);
 
     test = getVideo();
-    document.getElementById('video').addEventListener('canplay', vidToCanvas);
-    document.getElementById('snap').addEventListener('click', takePhoto);
 }
 
 function urlUpload() {
@@ -20,9 +24,16 @@ function urlUpload() {
 
 function noCamera() {
     const main = document.getElementById('up-main');
-    main.innerHTML = '<h3>Could not detect a camera, please upload file manually</h3>';
-    main.innerHTML = '<button id="to-up">Click Here To Upload From Files</button>';
-    document.getElementById('to-up').addEventListener('click', urlUpload);
+    const noCamMessage = document.createElement('h3');
+    const toLocalUp = document.createElement('button');
+
+    noCamMessage.textContent('Could not detect a camera, please upload file manually');
+    toLocalUp.textContent('Click Here To Upload From Local Disk');
+    toLocalUp.setAttribute('id', 'to-up');
+    toLocalUp.addEventListener('click', urlUpload);
+
+    main.appendChild(noCamMessage);
+    main.appendChild(toLocalUp);
 }
 
 function vidToCanvas() {
@@ -66,12 +77,19 @@ function getVideo() {
 */
 
 function mainInit() {
-    document.getElementById('up-main').innerHTML = '<video id="video"></video>';
-    document.getElementById('up-main').innerHTML += '<div class="lds-dual-ring"></div>';
+    const load = document.createElement('button');
+    const vid = document.createElement('video');
+
+    load.setAttribute('class', 'lds-dual-ring');
+    vid.setAttribute('id', 'video');
+    vid.addEventListener('canplay', addElems);
+
+
+    document.getElementById('page').appendChild(load);
+    document.getElementById('up-main').appendChild(vid);
     
     getVideo();
 
-    document.getElementById('video').addEventListener('canplay', addElems);
 }
 
 

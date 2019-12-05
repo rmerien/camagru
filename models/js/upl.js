@@ -1,21 +1,7 @@
-/*function uploadBtn() {
-    var data = this.parentElement.children.pvpic.src;
-    var caption = prompt('Add a caption:', '');
-    while (caption.length > 200) {
-        alert('Caption: maximum lenght: 200 characters')
-        caption = prompt('Add a caption:', '');
-    }
-    if (uploadToWebsite(data, caption)) {
-        this.parentElement.parentElement.removeChild(this.parentElement.parentElement);
-    } else {
-        alert('Failed to upload picture, try again later');
-    }
-}*/
-
 function uplMainInit() {
 
     const main = document.getElementById('up-main');
-    const strip = document.getElementById('up-strip');
+    //const strip = document.getElementById('up-strip');
 
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
