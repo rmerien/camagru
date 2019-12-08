@@ -1,19 +1,36 @@
 
 function addElems() {
-    const main = document.getElementById('up-main');
+
+    const page = document.getElementById('wrap-id-1');
+    const main = document.createElement('div');
+    const strip = document.createElement('div');
+
+    const vid = document.getElementById('video');
     const canvas = document.createElement('canvas');
     const snap = document.createElement('button');
 
+    main.setAttribute('id', 'up-main');
+    strip.setAttribute('id', 'up-strip');
+
+    vid.removeEventListener('canplay', addElems);
+    vid.addEventListener('canplay', vidToCanvas);
     canvas.setAttribute('id', 'canvas');
     snap.setAttribute('id', 'snap');
-    alert('we here');
     snap.textContent = 'Take Picture';
     snap.addEventListener('click', takePhoto);
+
+//assembling the elements together
 
     main.appendChild(canvas);
     main.appendChild(snap);
 
+    page.appendChild(main);
+    page.appendChild(strip);
+console.log(document.getElementsByClassName('lds-dual-ring')[0]);
+    page.removeChild(document.getElementsByClassName('lds-dual-ring')[0]);
+
     getVideo();
+    
 }
 
 function urlUpload() {
@@ -24,7 +41,7 @@ function urlUpload() {
 }
 
 function noCamera() {
-    const main = document.getElementById('up-main');
+    const page = document.getElementById('wrap-id-1');
     const noCamMessage = document.createElement('h3');
     const toLocalUp = document.createElement('button');
 
@@ -32,9 +49,10 @@ function noCamera() {
     toLocalUp.textContent = 'Click Here To Upload From Local Disk';
     toLocalUp.setAttribute('id', 'to-up');
     toLocalUp.addEventListener('click', urlUpload);
-
-    main.appendChild(noCamMessage);
-    main.appendChild(toLocalUp);
+    
+    page.removeChild(document.getElementsByClassName('lds-dual-ring')[0]);
+    page.appendChild(noCamMessage);
+    page.appendChild(toLocalUp);
 }
 
 function vidToCanvas() {
@@ -78,15 +96,14 @@ function getVideo() {
 */
 
 function mainInit() {
+ 
     const page = document.getElementById('wrap-id-1');
-    const main = document.createElement('div');
-    const strip = document.createElement('div');
+
 
     const load = document.createElement('button');
     const vid = document.createElement('video');
 
-    main.setAttribute('id', 'up-main');
-    strip.setAttribute('id', 'up-strip');
+
 
     load.setAttribute('class', 'lds-dual-ring');
     vid.setAttribute('id', 'video');
@@ -94,8 +111,6 @@ function mainInit() {
     page.appendChild(load);
     page.appendChild(vid);
     
-    document.getElementById('up-main').appendChild(vid);
-
     vid.addEventListener('canplay', addElems);
     
     getVideo();

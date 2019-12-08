@@ -1,7 +1,14 @@
 function uplMainInit() {
 
-    const main = document.getElementById('up-main');
-    //const strip = document.getElementById('up-strip');
+    const page = document.getElementById('wrap-id-1');
+    const main = document.createElement('div');
+    const strip = document.createElement('div');
+
+    main.setAttribute('id', 'up-main');
+    strip.setAttribute('id', 'up-strip');
+
+    page.appendChild(main);
+    page.appendChild(strip);
 
     const input = document.createElement('input');
     input.setAttribute('type', 'file');

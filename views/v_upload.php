@@ -10,8 +10,6 @@ if (!empty($_SESSION['logged_on_user'])) { ?>
 
 <div class="page" id='page' style='width: 90vw;'>
     <div class='flex-container container-2 flex-settings' id='wrap-id-1'>
-        <div id='up-main'></div>
-        <div id='up-strip'></div>
     </div>
 </div>
 
