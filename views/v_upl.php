@@ -26,7 +26,7 @@ if (!empty($_SESSION['logged_on_user'])) { ?>
 
 }
 else {
-    header("Location: ..");
+    header(" Location: ..");
 }
 
 echo $postPage; ?>

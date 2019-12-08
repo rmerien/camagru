@@ -6,13 +6,14 @@ function addElems() {
 
     canvas.setAttribute('id', 'canvas');
     snap.setAttribute('id', 'snap');
-    snap.textContent('Take Picture');
+    alert('we here');
+    snap.textContent = 'Take Picture';
     snap.addEventListener('click', takePhoto);
 
     main.appendChild(canvas);
     main.appendChild(snap);
 
-    test = getVideo();
+    getVideo();
 }
 
 function urlUpload() {
@@ -27,8 +28,8 @@ function noCamera() {
     const noCamMessage = document.createElement('h3');
     const toLocalUp = document.createElement('button');
 
-    noCamMessage.textContent('Could not detect a camera, please upload file manually');
-    toLocalUp.textContent('Click Here To Upload From Local Disk');
+    noCamMessage.textContent = 'Could not detect a camera, please upload file manually';
+    toLocalUp.textContent = 'Click Here To Upload From Local Disk';
     toLocalUp.setAttribute('id', 'to-up');
     toLocalUp.addEventListener('click', urlUpload);
 
@@ -77,16 +78,25 @@ function getVideo() {
 */
 
 function mainInit() {
+    const page = document.getElementById('wrap-id-1');
+    const main = document.createElement('div');
+    const strip = document.createElement('div');
+
     const load = document.createElement('button');
     const vid = document.createElement('video');
 
+    main.setAttribute('id', 'up-main');
+    strip.setAttribute('id', 'up-strip');
+
     load.setAttribute('class', 'lds-dual-ring');
     vid.setAttribute('id', 'video');
-    vid.addEventListener('canplay', addElems);
 
-
-    document.getElementById('page').appendChild(load);
+    page.appendChild(load);
+    page.appendChild(vid);
+    
     document.getElementById('up-main').appendChild(vid);
+
+    vid.addEventListener('canplay', addElems);
     
     getVideo();
 

@@ -6,14 +6,14 @@ function prevOnClick() {
         const btn = document.createElement('button');
         btn.setAttribute('class', 'up-pv');
         btn.setAttribute('name', 'upbtn');
-        btn.textContent('Upload');
+        btn.textContent = 'Upload';
         btn.addEventListener('click', uploadBtn);
         this.appendChild(btn);
 
         const btnDel = document.createElement('button');
         btnDel.setAttribute('class', 'del-pv');
         btnDel.setAttribute('name', 'delbtn');
-        btnDel.textContent('X')
+        btnDel.textContent = 'X';
         this.appendChild(btnDel);
         btnDel.addEventListener('click', function() {
             this.parentElement.parentElement.removeChild(this.parentElement);
@@ -39,7 +39,6 @@ function takePhoto() {
     imgElem.setAttribute('alt', 'Your Picture');
     imgElem.setAttribute('src', `${data}`);
     imgElem.setAttribute('name', 'pvpic');
-   // imgPV.innerHTML = `<img src="${data}" name='pvpic' alt="your picture" class='preview-pic'/>`;
     imgPV.appendChild(imgElem);
     strip.insertBefore(imgPV, strip.firstChild);
 }
