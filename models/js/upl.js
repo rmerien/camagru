@@ -11,10 +11,16 @@ function uplMainInit() {
     page.appendChild(strip);
 
     const input = document.createElement('input');
+    const label = document.createElement('label')
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/png, image/jpeg, image/jpg');
     input.setAttribute('id', 'file');
+    input.setAttribute('style', 'display:none');
+    label.setAttribute('for', 'file');
+    label.setAttribute('id', 'file-lab');
+    label.textContent = 'Choose File';
     main.appendChild(input);
+    main.appendChild(label);
     
     main.appendChild(document.createElement('br'));
 
@@ -42,7 +48,8 @@ function uplMainInit() {
                     const button = document.createElement('button');
                     button.setAttribute('id', 'snap');
                     button.addEventListener('click', takePhoto);
-                    button.appendChild( document.createTextNode("Submit") );
+                    button.textContent = 'Submit';
+                    //button.appendChild( document.createTextNode("Submit") );
                     main.appendChild(button);
                 }
                 img.src = reader.result;

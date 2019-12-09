@@ -13,7 +13,7 @@ function prevOnClick() {
         const btnDel = document.createElement('button');
         btnDel.setAttribute('class', 'del-pv');
         btnDel.setAttribute('name', 'delbtn');
-        btnDel.textContent = 'X';
+        btnDel.textContent = '❌';
         this.appendChild(btnDel);
         btnDel.addEventListener('click', function() {
             this.parentElement.parentElement.removeChild(this.parentElement);
