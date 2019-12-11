@@ -8,7 +8,8 @@
 <?php echo $prePage; ?>
 
 <div class="page">
-    <input type="text" placeholder="Search user">
+    <input type="text" placeholder="Search user" id="">
+    <div id='ayah'></div>
     WI123WIW<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>
     wowowow<br>wawawawasdasdf<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>
     wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>
