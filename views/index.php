@@ -9,12 +9,12 @@
 
 <div class='page'>
     <div id='feed-head'>
-        <h2>Camagru</h2>
+        <h2 id='feed-title'>Camagru</h2>
         <input type='text' placeholder='Search by user..' id='searchbar'>
     </div>
 
     <div id='feed'>
-    <br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas
+    <br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas
     </div>
 </div>
 

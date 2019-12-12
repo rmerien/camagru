@@ -10,7 +10,6 @@ try {
 } catch (Exception $e) {
     echo 'Error: Could not retrieve images: ' . $e;
 }
-foreach($query as $user) {
-    echo $user['uid'];
-}
-//var_dump($query);
+
+$response = json_encode($query);
+echo $response;

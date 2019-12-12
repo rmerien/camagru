@@ -20,7 +20,7 @@ class Image
 		return ($handler);
 	}
 
-	public static function getImages($uname)
+	/*public static function getImages($uname)
 	{
 		if ($uname) {
 			$sql = "SELECT `uid` FROM `user` WHERE `username` LIKE :uname";
@@ -35,22 +35,27 @@ class Image
 			$users = $handler->fetchAll();
 			$arrayUser = array();
 
-			foreach ($users as $u) {
-				if (gettype($u['uid']) === 'integer') {
-					$arrayUser[] = $u['uid'];
+			if (count($users)) {
+				foreach ($users as $u) {
+					if (gettype($u['uid']) === 'integer') {
+						$arrayUser[] = $u['uid'];
+					}
 				}
-			}
 
-			$clause = implode(',', array_fill(0, count($arrayUser), '?'));
+				$clause = implode(',', array_fill(0, count($arrayUser), '?'));
 
-			$sql = "SELECT * FROM `image` WHERE `uid` IN ($clause)";
-			$params = array();
-			try {
-				$handler = Database::pdoQuery($sql, $params);
-			} catch (Exception $e) {
-				throw new Exception($e->getMessage());
+				$sql = "SELECT * FROM `image` WHERE `uid` IN ($clause)";
+				$params = $arrayUser;
+				try {
+					$handler = Database::pdoQuery($sql, $params);
+				} catch (Exception $e) {
+					throw new Exception($e->getMessage());
+				}
+				$query = $handler->fetchAll();
 			}
-			$query = $handler->fetchAll();
+			else {
+				$query = array();
+			}
 		}
 		else {
 			$sql = "SELECT * FROM `image`";
@@ -63,5 +68,21 @@ class Image
 			$query = $handler->fetchAll();
 		}
 		return ($query);
+	}*/
+
+	public static function getImages($uname)
+	{
+		$sql = "SELECT image.*, user.username FROM `image` INNER JOIN `user` USING (uid) WHERE user.username LIKE :uname";
+		$params = array(
+			'uname' => $uname . '%'
+		);
+		try {
+			$handler = Database::pdoQuery($sql, $params);
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+		}
+		$query = $handler->fetchAll();
+		return ($query);
 	}
+
 }

@@ -7,3 +7,7 @@
     border: 2px solid rgb(92, 3, 26);
     box-shadow: 1px black;
 }
+
+h2#feed-title {
+    margin: 20px 0 10px;
+}
