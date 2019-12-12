@@ -1,19 +1,5 @@
-function sanitize($string, $force_lowercase = true, $anal = false) {
-    $strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]",
-                   "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
-                   "â€”", "â€“", ",", "<", ".", ">", "/", "?");
-    $clean = trim(str_replace($strip, "", strip_tags($string)));
-    $clean = preg_replace('/\s+/', "-", $clean);
-    $clean = ($anal) ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean ;
-    return ($force_lowercase) ?
-        (function_exists('mb_strtolower')) ?
-            mb_strtolower($clean, 'UTF-8') :
-            strtolower($clean) :
-        $clean;
-}
-
 function displayPics(jsonPics) {
-    console.log(jsonPics);
+    console.dir(jsonPics);
 }
 
 function initFeed() {
@@ -48,18 +34,12 @@ function initFeed() {
         
         var xhr = getXHR();
 
-        xhr.responseType = 'json';
-
-        xhr.open('POST', '../models/m_feed.php?u='+uname, true);
+        xhr.open('POST', '../models/m_feed.php', true);
 
         xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
 
-        xhr.upload.onprogress = function(e) {
-            if (e.lengthComputable) {
-                var percentComplete = (e.loaded / e.total) * 100;
-                console.log(percentComplete + '% uploaded');
-                displayPics(xhr.responseText);
-            }
+        xhr.onload = function(e) {
+                displayPics(xhr.response);
         };
         xhr.send(fd);
     }

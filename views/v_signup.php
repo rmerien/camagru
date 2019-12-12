@@ -27,7 +27,7 @@ if (empty($_SESSION['logged_on_user'])) {   ?>
     <label for="psw"><b>Password</b></label>
     <input require class='form-v1' type="password" placeholder="Your Password" name="psw" required>
         
-    <button class='submit-button form-v1' type="submit">Login</button>
+    <button class='submit-button form-v1' type="submit">Create Account</button>
 
   </div>
 
