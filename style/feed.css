@@ -1,0 +1,9 @@
+#feed-head {
+    text-align: center;
+}
+
+#searchbar {
+    font-size: 19px;
+    border: 2px solid rgb(92, 3, 26);
+    box-shadow: 1px black;
+}

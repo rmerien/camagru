@@ -15,5 +15,3 @@ $metadata = <<<DATA
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
 
 DATA;
-
-//    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald">

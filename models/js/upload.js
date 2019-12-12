@@ -26,7 +26,6 @@ function addElems() {
 
     page.appendChild(main);
     page.appendChild(strip);
-console.log(document.getElementsByClassName('lds-dual-ring')[0]);
     page.removeChild(document.getElementsByClassName('lds-dual-ring')[0]);
 
     getVideo();

@@ -1,21 +1,23 @@
 <?php   
     $page = 'Feed';
 
-    require './structure/v_pageStructure.php';
-    require '../models/class/c_database.php';
+    include './structure/v_pageStructure.php';
+    include '../models/class/c_database.php';
 ?>
 
 <?php echo $prePage; ?>
 
-<div class="page">
-    <input type="text" placeholder="Search user" id="">
-    <div id='ayah'></div>
-    WI123WIW<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>
-    wowowow<br>wawawawasdasdf<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>
-    wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>
-    wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>
-    wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>
-    wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowow<br>wowowo23123w
+<div class='page'>
+    <div id='feed-head'>
+        <h2>Camagru</h2>
+        <input type='text' placeholder='Search by user..' id='searchbar'>
+    </div>
+
+    <div id='feed'>
+    <br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas<br>laslalas
+    </div>
 </div>
+
+<script type="text/javascript" src="../models/js/feed.js"></script>
 
 <?php echo $postPage; ?>

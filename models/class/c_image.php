@@ -19,4 +19,18 @@ class Image
 		}
 		return ($handler);
 	}
+
+	public static function getImages($uname)
+	{
+		if ($uname) {
+			$sql = "SELECT `uid` FROM `user` WHERE `uname` LIKE :uname";
+			$params = array(
+				'uname' => $uname . '%'
+			);
+			return($params);
+		}
+		$sql = "INSERT INTO `image` (`uid`, `path`, `caption`)
+				VALUES (:uid, :path, :caption)";
+		return ('ahah');
+	}
 }

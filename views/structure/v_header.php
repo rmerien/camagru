@@ -6,6 +6,8 @@ if (isset($_SESSION['logged_on_user'])) {
 $nickname = strtoupper($_SESSION['logged_on_user']['username']);
 $navbar = <<<NAV
 
+<script type="text/javascript" src="../models/js/ajax.js"></script>
+
 <div id='navbar'>
 	<a id='menu-link-logo' href="../views"><img id='logo' src="../img/logo.png" alt="Camagru"/></a>
 	<div id='nav-right' style='text-align: center;'>
@@ -20,11 +22,15 @@ $navbar = <<<NAV
 	</div>
 </div>
 
+<script type="text/javascript" src="../models/js/navbar.js"></script>
+
 NAV;
 }
 else {
 
 $navbar = <<<NAV
+
+<script type="text/javascript" src="../models/js/ajax.js"></script>
 
 <div id='navbar'>
 	<a href="../views"><img id='logo' src="../img/logo.png" alt="Camagru"/></a>
@@ -33,6 +39,8 @@ $navbar = <<<NAV
 		<a class='menu-button' href='./v_signup.php'>SIGN UP</a>
 	</div>
 </div>
+
+<script type="text/javascript" src="../models/js/navbar.js"></script>
 
 NAV;
 }
