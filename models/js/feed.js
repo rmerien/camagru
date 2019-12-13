@@ -1,5 +1,33 @@
+function displayIMG(img) {
+    const feed = document.getElementById('feed');
+    let divIMG = document.createElement('div');
+    let image = document.createElement('img');
+    let desc = document.createElement('span');
+    let name = document.createElement('strong');
+    let caption = document.createTextNode(' : ' + img['caption']);
+
+    name.setAttribute('style', 'font-weight:bold');
+    name.innerText = img['username'];
+    desc.append(name);
+    desc.append(caption);
+    desc.setAttribute('class', 'feed-desc');
+    divIMG.setAttribute('class', 'elem-feed');
+    image.setAttribute('class', 'img-feed');
+    image.setAttribute('src', '../img/' + img['uid'] + '/' + img['path'])
+
+    divIMG.append(image);
+    divIMG.append(desc);
+    feed.append(divIMG);
+}
+
 function displayPics(jsonPics) {
-    console.dir(jsonPics);
+    let pics = JSON.parse(jsonPics).reverse();
+    console.dir(pics);
+    let pageNum = 0;
+
+    for(var i = 0; (i < pageNum * 9 + 9) && (i < pics.length); i++) {
+        displayIMG(pics[i]);
+    }
 }
 
 function initFeed() {
@@ -23,7 +51,6 @@ function initFeed() {
         let uname = document.getElementById('searchbar').value;
 
 
-
         if (!uname) {
             uname = "";
         }
@@ -44,4 +71,5 @@ function initFeed() {
         xhr.send(fd);
     }
 }
-document.addEventListener('readystatechange', initFeed());
+
+initFeed();
