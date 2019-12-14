@@ -20,6 +20,7 @@ h2#feed-title {
 }
 
 .elem-feed {
+    overflow-wrap: anywhere;
     width: 300px;
     height: 350px;
     max-width: 300px;
@@ -36,6 +37,8 @@ h2#feed-title {
 }
 
 .feed-desc {
+    float: left;
+    overflow-wrap: anywhere;
     line-height: 1;
     text-overflow: ellipsis;
     font-size: 18px;

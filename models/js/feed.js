@@ -4,7 +4,14 @@ function displayIMG(img) {
     let image = document.createElement('img');
     let desc = document.createElement('span');
     let name = document.createElement('strong');
-    let caption = document.createTextNode(' : ' + img['caption']);
+    let caption;
+
+    if (img['caption'].length < 100) {
+        caption = document.createTextNode(' : ' + img['caption']);
+    } else {
+        caption = document.createTextNode(' : ' + img['caption'].substring(0, 97) + '...');
+    }
+
 
     name.setAttribute('style', 'font-weight:bold');
     name.innerText = img['username'];

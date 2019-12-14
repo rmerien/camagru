@@ -7,7 +7,7 @@
 
 <?php echo $prePage; ?>
 
-<div class='page' style='font-size:inherit'>
+<div class='page'> <!-- style='font-size:inherit'> -->
     <div id='feed-head'>
         <h2 id='feed-title'>Feed</h2>
         <input type='text' placeholder='Search by user..' id='searchbar'>
