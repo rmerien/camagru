@@ -1,3 +1,38 @@
+function appendArrows(pageInfo) {
+    const feed = document.getElementById('feed');
+    let currPage = pageInfo[0];
+    let maxPage = pageInfo[1];
+    const menu = document.createElement('div');
+
+    if (currPage > maxPage) {
+        currPage = 0;
+    }
+    if (currPage != 0) {
+        const arrBack = document.createElement('a');
+        arrBack.href = '#';
+        arrBack.innerText = '<<';
+        menu.append(arrBack);
+    }
+    if (currPage != maxPage) {
+        const arrForw = document.createElement('a');
+        arrForw.href = '?page=' + (currPage + 1) + '#';
+        arrForw.innerText = '>>';
+        menu.append(arrForw);
+    }
+    feed.append(menu);
+    console.log(currPage + 'asdfasdf' + maxPage);
+}
+
+function getPageNum() {
+    let url = new URL(document.location);
+    let page = parseInt(url.searchParams.get('page'));
+    if (page) {
+        return page;
+    } else {
+        return 0;
+    }
+}
+
 function displayIMG(img) {
     const feed = document.getElementById('feed');
     let divIMG = document.createElement('div');
@@ -11,7 +46,6 @@ function displayIMG(img) {
     } else {
         caption = document.createTextNode(' : ' + img['caption'].substring(0, 97) + '...');
     }
-
 
     name.setAttribute('style', 'font-weight:bold');
     name.innerText = img['username'];
@@ -30,11 +64,22 @@ function displayIMG(img) {
 function displayPics(jsonPics) {
     let pics = JSON.parse(jsonPics).reverse();
     console.dir(pics);
-    let pageNum = 0;
+    let pageNum = getPageNum();
+    let imgNum = 12;
 
-    for(var i = 0; (i < pageNum * 9 + 9) && (i < pics.length); i++) {
+    if (Math.floor(pics.length / imgNum) < pageNum) {
+        pageNum = 0;
+    }
+
+    for(var i = pageNum * imgNum; (i < pageNum * imgNum + imgNum) && (i < pics.length); i++) {
         displayIMG(pics[i]);
     }
+
+    let arr = [pageNum, Math.floor(pics.length / imgNum)];
+
+    console.log(arr);
+
+    return arr;
 }
 
 function initFeed() {
@@ -73,7 +118,8 @@ function initFeed() {
         xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
 
         xhr.onload = function(e) {
-                displayPics(xhr.response);
+                let pageInfo = displayPics(xhr.response);
+                appendArrows(pageInfo);
         };
         xhr.send(fd);
     }
