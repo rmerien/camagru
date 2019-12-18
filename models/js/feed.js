@@ -1,5 +1,6 @@
 function appendArrows(pageInfo) {
-    const feed = document.getElementById('feed');
+    const page = document.getElementsByClassName('page')[0];
+    console.log(page);
     let currPage = pageInfo[0];
     let maxPage = pageInfo[1];
     const menu = document.createElement('div');
@@ -19,7 +20,7 @@ function appendArrows(pageInfo) {
         arrForw.innerText = '>>';
         menu.append(arrForw);
     }
-    feed.append(menu);
+    page.append(menu);
     console.log(currPage + 'asdfasdf' + maxPage);
 }
 
