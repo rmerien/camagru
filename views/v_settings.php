@@ -16,7 +16,7 @@ echo '<br>';
 var_dump($_POST);?>
     <div class='flex-container container-2 flex-settings'>
         <div class='set-menu'>
-            <form id='set-nav' action='#' method='get'>
+            <div id='set-nav'>
                 <button class='set-index' type="submit" name='display' value='view_info'>User Info</button>
                 <button class='set-index' type="submit" name='display' value='mod_mail'>Change Mail</button>
                 <button class='set-index' type="submit" name='display' value='mod_pwrd'>Change Password</button>
@@ -24,7 +24,7 @@ var_dump($_POST);?>
 <!--       <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label> -->
-            </form>
+            </div>
         </div>
 
 

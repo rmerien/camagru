@@ -1,3 +1,8 @@
+function bigImg() {
+    let path = this.getAttribute('data-path');
+    console.dir(path);
+}
+
 function appendArrows(pageInfo) {
     const page = document.getElementsByClassName('page')[0];
     console.log(page);
@@ -5,23 +10,25 @@ function appendArrows(pageInfo) {
     let maxPage = pageInfo[1];
     const menu = document.createElement('div');
 
+    menu.setAttribute('id', 'arr-menu');
     if (currPage > maxPage) {
         currPage = 0;
     }
     if (currPage != 0) {
         const arrBack = document.createElement('a');
-        arrBack.href = '#';
-        arrBack.innerText = '<<';
+        arrBack.setAttribute('class', 'nav-arrow');
+        arrBack.href = '?page=' + (currPage - 1) + '#';
+        arrBack.innerText = 'Previous Page';
         menu.append(arrBack);
     }
     if (currPage != maxPage) {
         const arrForw = document.createElement('a');
+        arrForw.setAttribute('class', 'nav-arrow');
         arrForw.href = '?page=' + (currPage + 1) + '#';
-        arrForw.innerText = '>>';
+        arrForw.innerText = 'Next Page';
         menu.append(arrForw);
     }
     page.append(menu);
-    console.log(currPage + 'asdfasdf' + maxPage);
 }
 
 function getPageNum() {
@@ -35,6 +42,8 @@ function getPageNum() {
 }
 
 function displayIMG(img) {
+    console.log('penis');
+    console.log(img);
     const feed = document.getElementById('feed');
     let divIMG = document.createElement('div');
     let image = document.createElement('img');
@@ -54,8 +63,10 @@ function displayIMG(img) {
     desc.append(caption);
     desc.setAttribute('class', 'feed-desc');
     divIMG.setAttribute('class', 'elem-feed');
+    divIMG.addEventListener('click', bigImg);
+    divIMG.setAttribute('data-path', img['path']);
     image.setAttribute('class', 'img-feed');
-    image.setAttribute('src', '../img/' + img['uid'] + '/' + img['path'])
+    image.setAttribute('src', '../img/' + img['uid'] + '/' + img['path']);
 
     divIMG.append(image);
     divIMG.append(desc);
