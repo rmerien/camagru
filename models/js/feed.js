@@ -13,7 +13,7 @@ function getDataBigImg (path) {
 
     var xhr = getXHR();
 
-    xhr.open('POST', '../models/m_feed.php', true);
+    xhr.open('POST', '../models/m_preview.php', true);
 
     xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
 
