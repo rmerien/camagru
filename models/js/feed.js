@@ -1,6 +1,26 @@
 function bigImg() {
     let path = this.getAttribute('data-path');
-    console.dir(path);
+    console.dir(path + 'mdr');
+
+    let infoPv = getDataBigImg(path)
+}
+
+function getDataBigImg (path) {
+
+    var fd = new FormData();
+
+    fd.append('path', path);
+
+    var xhr = getXHR();
+
+    xhr.open('POST', '../models/m_feed.php', true);
+
+    xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+
+    xhr.onload = function(e) {
+        console.log(xhr.response);
+    };
+    xhr.send(fd);
 }
 
 function appendArrows(pageInfo) {
@@ -42,8 +62,6 @@ function getPageNum() {
 }
 
 function displayIMG(img) {
-    console.log('penis');
-    console.log(img);
     const feed = document.getElementById('feed');
     let divIMG = document.createElement('div');
     let image = document.createElement('img');
@@ -75,7 +93,6 @@ function displayIMG(img) {
 
 function displayPics(jsonPics) {
     let pics = JSON.parse(jsonPics).reverse();
-    console.dir(pics);
     let pageNum = getPageNum();
     let imgNum = 12;
 
@@ -88,8 +105,6 @@ function displayPics(jsonPics) {
     }
 
     let arr = [pageNum, Math.floor(pics.length / imgNum)];
-
-    console.log(arr);
 
     return arr;
 }
@@ -107,7 +122,6 @@ function initFeed() {
     });
 
     input.addEventListener('keydown', function (e) {
-        console.log(e);
         clearTimeout(typingTimer);
     });
 
