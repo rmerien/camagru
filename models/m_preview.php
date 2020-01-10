@@ -3,7 +3,7 @@
 include './class/c_image.php';
 include './class/c_database.php';
 
-$uname = $_POST['path'];
+$path = $_POST['path'];
 
 try {
     $query = Image::getImageDetails($path);

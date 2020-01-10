@@ -1,15 +1,38 @@
 function bigImg() {
-    let path = this.getAttribute('data-path');
-    console.dir(path + 'mdr');
 
-    let infoPv = getDataBigImg(path)
+    let path = this.getAttribute('data-path');
+    let imgId = this.getAttribute('data-iid');
+    let imgUid = this.getAttribute('data-uid');
+
+    console.log('uid    : ' + imgUid)
+    let str = this.innerText;
+    let delim = ' : ';
+    let uname = str.slice(0, str.indexOf(delim));
+    let caption = str.slice(str.indexOf(delim) + delim.length);
+
+    let pvDiv = document.createElement('div');
+    let pvImg = document.createElement('img');
+    let pvData = document.createElement('div');
+
+    pvDiv.setAttribute('id', 'preview-feed');
+    pvImg.setAttribute('src', '../img/' + imgUid + '/' + path);
+
+    pvDiv.appendChild(pvImg);
+    pvDiv.appendChild(pvData);
+
+    document.body.appendChild(pvDiv);
+
+    console.dir(this);
+
+    //let infoPv = getComments(imgId)
 }
 
-function getDataBigImg (path) {
+function getComments(imgId) {
 
     var fd = new FormData();
 
-    fd.append('path', path);
+    fd.append('iid', imgId);
+    fd.append('action', 'comments');
 
     var xhr = getXHR();
 
@@ -25,7 +48,6 @@ function getDataBigImg (path) {
 
 function appendArrows(pageInfo) {
     const page = document.getElementsByClassName('page')[0];
-    console.log(page);
     let currPage = pageInfo[0];
     let maxPage = pageInfo[1];
     const menu = document.createElement('div');
@@ -62,6 +84,7 @@ function getPageNum() {
 }
 
 function displayIMG(img) {
+    console.log(img);
     const feed = document.getElementById('feed');
     let divIMG = document.createElement('div');
     let image = document.createElement('img');
@@ -83,6 +106,8 @@ function displayIMG(img) {
     divIMG.setAttribute('class', 'elem-feed');
     divIMG.addEventListener('click', bigImg);
     divIMG.setAttribute('data-path', img['path']);
+    divIMG.setAttribute('data-iid', img['img_id']);
+    divIMG.setAttribute('data-uid', img['uid']);
     image.setAttribute('class', 'img-feed');
     image.setAttribute('src', '../img/' + img['uid'] + '/' + img['path']);
 
