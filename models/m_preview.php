@@ -9,6 +9,7 @@ try {
     $query = Image::getImageDetails($path);
 } catch (Exception $e) {
     echo 'Error: Could not retrieve image details: ' . $e;
+    return;
 }
 
 $response = json_encode($query);

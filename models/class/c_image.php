@@ -37,6 +37,18 @@ class Image
 
 	public static function getImageDetails($path)
 	{
-		$sql = "SELECT image.*, comment.username FROM `image` INNER JOIN `comment` USING (image_id) WHERE image.image_id LIKE :imgid";
+		$sql = "SELECT image.*, comment.username FROM `image`
+				INNER JOIN `comment` USING (img_id) WHERE image.path LIKE :path
+				INNER JOIN `like` USING (img_id) WHERE image.path LIKE :path"";
+		$params = array(
+			'path' => $path
+		);
+		try {
+			$handler = Database::pdoQuery($sql, $params);
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+		}
+		$query = $handler->fetchAll();
+		return ($query);
 	}
 }
