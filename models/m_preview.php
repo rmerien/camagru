@@ -3,6 +3,18 @@
 include './class/c_image.php';
 include './class/c_database.php';
 
+/*$action = $_POST['action'];
+
+switch ($action) {
+    case 'comments':
+        $response = getComments();
+        break;
+    case 'likeAmount':
+        $response = getLikeAmount();
+        break;
+    case 'addLike':
+        $response = addLike();
+}
 $path = $_POST['path'];
 
 try {
@@ -12,5 +24,5 @@ try {
     return;
 }
 
-$response = json_encode($query);
-echo $response;
+//$response = json_encode($query);
+//echo $response;

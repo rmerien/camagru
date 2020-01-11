@@ -10,6 +10,9 @@ function bigImg() {
     let imgId = this.getAttribute('data-iid');
     let imgUid = this.getAttribute('data-uid');
 
+    //var currUID = getUID();
+    //console.log(currUID);
+
     let str = this.innerText;
     let delim = ' : ';
     let uname = str.slice(0, str.indexOf(delim));
@@ -18,6 +21,7 @@ function bigImg() {
     let btnDel = document.createElement('button');
     
     likeNum.setAttribute('class', 'like-pv');
+    likeNum.textContent = '👍' + getLikeAmount(imgId);
     btnDel.setAttribute('class', 'del-pv');
     btnDel.setAttribute('name', 'delbtn');
     btnDel.textContent = '❌';
@@ -36,6 +40,7 @@ function bigImg() {
     pvImg.setAttribute('src', '../img/' + imgUid + '/' + path);
 
     pvDiv.appendChild(btnDel);
+    pvDiv.appendChild(likeNum);
     pvDiv.appendChild(pvImg);
     pvDiv.appendChild(pvData);
 
@@ -50,6 +55,25 @@ function getComments(imgId) {
 
     fd.append('iid', imgId);
     fd.append('action', 'comments');
+
+    var xhr = getXHR();
+
+    xhr.open('POST', '../models/m_preview.php', true);
+
+    xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+
+    xhr.onload = function(e) {
+        console.log(xhr.response);
+    };
+    xhr.send(fd);
+}
+
+function getLikeAmount(imgId) {
+
+    var fd = new FormData();
+
+    fd.append('iid', imgId);
+    fd.append('action', 'likeAmount');
 
     var xhr = getXHR();
 
