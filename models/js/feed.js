@@ -1,28 +1,45 @@
 function bigImg() {
 
+    let check;
+
+    if (check = document.getElementById('preview-feed')) {
+        check.parentElement.removeChild(check);
+    }
+
     let path = this.getAttribute('data-path');
     let imgId = this.getAttribute('data-iid');
     let imgUid = this.getAttribute('data-uid');
 
-    console.log('uid    : ' + imgUid)
     let str = this.innerText;
     let delim = ' : ';
     let uname = str.slice(0, str.indexOf(delim));
     let caption = str.slice(str.indexOf(delim) + delim.length);
+    let likeNum = document.createElement('div');
+    let btnDel = document.createElement('button');
+    
+    likeNum.setAttribute('class', 'like-pv');
+    btnDel.setAttribute('class', 'del-pv');
+    btnDel.setAttribute('name', 'delbtn');
+    btnDel.textContent = '❌';
 
     let pvDiv = document.createElement('div');
     let pvImg = document.createElement('img');
     let pvData = document.createElement('div');
 
+    btnDel.addEventListener('click', function (e) {
+        let check = document.getElementById('preview-feed');
+        if(check) {
+        check.parentElement.removeChild(check);
+        }
+    });
     pvDiv.setAttribute('id', 'preview-feed');
     pvImg.setAttribute('src', '../img/' + imgUid + '/' + path);
 
+    pvDiv.appendChild(btnDel);
     pvDiv.appendChild(pvImg);
     pvDiv.appendChild(pvData);
 
     document.body.appendChild(pvDiv);
-
-    console.dir(this);
 
     //let infoPv = getComments(imgId)
 }
