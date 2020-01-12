@@ -1,15 +1,79 @@
 function bigImg() {
-    let path = this.getAttribute('data-path');
-    console.dir(path + 'mdr');
 
-    let infoPv = getDataBigImg(path)
+    let check;
+
+    if (check = document.getElementById('preview-feed')) {
+        check.parentElement.removeChild(check);
+    }
+
+    let path = this.getAttribute('data-path');
+    let imgId = this.getAttribute('data-iid');
+    let imgUid = this.getAttribute('data-uid');
+
+    //var currUID = getUID();
+    //console.log(currUID);
+
+    let str = this.innerText;
+    let delim = ' : ';
+    let uname = str.slice(0, str.indexOf(delim));
+    let caption = str.slice(str.indexOf(delim) + delim.length);
+    let likeNum = document.createElement('div');
+    let btnDel = document.createElement('button');
+    
+    likeNum.setAttribute('class', 'like-pv');
+    likeNum.textContent = '👍' + getLikeAmount(imgId);
+    btnDel.setAttribute('class', 'del-pv');
+    btnDel.setAttribute('name', 'delbtn');
+    btnDel.textContent = '❌';
+
+    let pvDiv = document.createElement('div');
+    let pvImg = document.createElement('img');
+    let pvData = document.createElement('div');
+
+    btnDel.addEventListener('click', function (e) {
+        let check = document.getElementById('preview-feed');
+        if(check) {
+        check.parentElement.removeChild(check);
+        }
+    });
+    pvDiv.setAttribute('id', 'preview-feed');
+    pvImg.setAttribute('src', '../img/' + imgUid + '/' + path);
+
+    pvDiv.appendChild(btnDel);
+    pvDiv.appendChild(likeNum);
+    pvDiv.appendChild(pvImg);
+    pvDiv.appendChild(pvData);
+
+    document.body.appendChild(pvDiv);
+
+    //let infoPv = getComments(imgId)
 }
 
-function getDataBigImg (path) {
+function getComments(imgId) {
 
     var fd = new FormData();
 
-    fd.append('path', path);
+    fd.append('iid', imgId);
+    fd.append('action', 'comments');
+
+    var xhr = getXHR();
+
+    xhr.open('POST', '../models/m_preview.php', true);
+
+    xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+
+    xhr.onload = function(e) {
+        console.log(xhr.response);
+    };
+    xhr.send(fd);
+}
+
+function getLikeAmount(imgId) {
+
+    var fd = new FormData();
+
+    fd.append('iid', imgId);
+    fd.append('action', 'likeAmount');
 
     var xhr = getXHR();
 
@@ -25,7 +89,6 @@ function getDataBigImg (path) {
 
 function appendArrows(pageInfo) {
     const page = document.getElementsByClassName('page')[0];
-    console.log(page);
     let currPage = pageInfo[0];
     let maxPage = pageInfo[1];
     const menu = document.createElement('div');
@@ -62,6 +125,7 @@ function getPageNum() {
 }
 
 function displayIMG(img) {
+    console.log(img);
     const feed = document.getElementById('feed');
     let divIMG = document.createElement('div');
     let image = document.createElement('img');
@@ -83,6 +147,8 @@ function displayIMG(img) {
     divIMG.setAttribute('class', 'elem-feed');
     divIMG.addEventListener('click', bigImg);
     divIMG.setAttribute('data-path', img['path']);
+    divIMG.setAttribute('data-iid', img['img_id']);
+    divIMG.setAttribute('data-uid', img['uid']);
     image.setAttribute('class', 'img-feed');
     image.setAttribute('src', '../img/' + img['uid'] + '/' + img['path']);
 

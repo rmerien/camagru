@@ -38,7 +38,7 @@ h2#feed-title {
 
 .feed-desc {
     float: left;
-    overflow-wrap: anywhere;
+    /*overflow-wrap: anywhere;*/
     line-height: 1;
     text-overflow: ellipsis;
     font-size: 18px;
@@ -63,4 +63,27 @@ h2#feed-title {
 
 .arr-menu {
     display: flex;
+}
+
+div#preview-feed {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: yellowgreen;
+    z-index: 99;
+    position: fixed;
+    margin: auto;
+}
+
+.like-pv {
+    background-color: whitesmoke;
+    position: absolute;
+	left: 5px;
+	top: 5px;
+	height: 32px;
+	opacity: 0.3;
+	z-index: 100;
+  }
+.like-pv:hover {
+	opacity: 1;
 }

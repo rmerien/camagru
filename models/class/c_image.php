@@ -37,9 +37,20 @@ class Image
 
 	public static function getImageDetails($path)
 	{
+
 		$sql = "SELECT image.*, comment.username FROM `image`
 				INNER JOIN `comment` USING (img_id) WHERE image.path LIKE :path
 				INNER JOIN `comment` USING (img_id) WHERE image.path LIKE :path;
+
+		echo 'd';
+		$sql = "SELECT * FROM `image`
+				RIGHT JOIN `comment` USING (`img_id`)
+				UNION
+				SELECT * FROM `image`
+				LEFT JOIN `comment` USING (`img_id`)
+				";// WHERE image.path LIKE :path";
+			//	INNER JOIN `like` USING (img_id) WHERE image.path LIKE :path";
+
 		$params = array(
 			'path' => $path
 		);

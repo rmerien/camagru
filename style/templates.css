@@ -72,3 +72,16 @@ h2.page-title {
 	  -webkit-transform: rotate(360deg);
 	}
 }
+
+.del-pv {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 32px;
+	height: 32px;
+	opacity: 0.3;
+	z-index: 100;
+  }
+  .del-pv:hover {
+	opacity: 1;
+  }

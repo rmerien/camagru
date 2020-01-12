@@ -69,18 +69,6 @@
   opacity: 1;
 }
 
-.del-pv {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  width: 32px;
-  height: 32px;
-  opacity: 0.3;
-}
-.del-pv:hover {
-  opacity: 1;
-}
-
 #video {
     display: none;
     min-width: 20%;

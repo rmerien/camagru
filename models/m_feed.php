@@ -9,7 +9,9 @@ try {
     $query = Image::getImages($uname);
 } catch (Exception $e) {
     echo 'Error: Could not retrieve images: ' . $e;
+    return;
 }
 
-$response = json_encode($query);
+$response = JSON_encode($query);
+
 echo $response;
