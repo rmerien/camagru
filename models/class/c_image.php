@@ -39,7 +39,7 @@ class Image
 	{
 		$sql = "SELECT image.*, comment.username FROM `image`
 				INNER JOIN `comment` USING (img_id) WHERE image.path LIKE :path
-				INNER JOIN `like` USING (img_id) WHERE image.path LIKE :path"";
+				INNER JOIN `comment` USING (img_id) WHERE image.path LIKE :path;
 		$params = array(
 			'path' => $path
 		);
