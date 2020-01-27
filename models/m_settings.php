@@ -1,45 +1,40 @@
 <?php
 
 include './class/c_image.php';
-include './class/c_like.php';
+include './class/c_mail.php';
 include './class/c_comment.php';
 include './class/c_database.php';
 
 $action = $_POST['action'];
-$iid = intval($_POST['iid']);
 
 switch ($action) {
-    case 'getComments':
+    case 'disableNotif':
         try {
-            $response = JSON_encode(Comment::getComments($iid));
         } catch (Exception $e) {
             echo 'Error';
         }
         break;
-    case 'likeAmount':
+    case 'statusNotif':
         try {
-            $response = Like::getLikeAmount($iid);
+            $response = Mail::checkNotif($_POST['uname']);
         } catch (Exception $e) {
             echo 'Error';
         }
         break;
-    case 'likeToggle':
+    case 'enableNotif':
         try {
-            $response = Like::toggleLike($idd, $_POST['uid']);
         } catch (Exception $e) {
             echo 'Error';
         }
         break;
-    case 'addComment':
+    case 'changePassword':
         try {
-            Comment::addComment($_POST['uid'], $_POST['comment'], $iid);
         } catch (Exception $e) {
             echo $e;
         }
         break;
-    case 'delImage':
+    case 'changeMail':
         try {
-            Image::delImage($iid);
         } catch (Exception $e) {
             echo $e;
         }

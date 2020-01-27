@@ -1,91 +1,197 @@
-function bigImg() {
+function deleteImg() {
+    if (confirm('Are you sure you want to delete this image?')) {
+        const iid = document.getElementById('img-wrap').getAttribute('data-iid');
+        var fd = new FormData();
+        fd.append('iid', iid);
+        fd.append('action', 'delImage');
+        var xhr = getXHR();
+        xhr.open('POST', '../models/m_preview.php', true);
+        xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+        xhr.onload = function(e) {
+            console.log(xhr.responsetext);
+            location.reload();
+        };
+        xhr.send(fd);
+    }
+}
 
+function addComment()
+{
+    const com = document.getElementById('add-com-pv-txt').value;
+    if (com.length > 0) {
+        const iid = document.getElementById('img-wrap').getAttribute('data-iid');
+        const uid = getUID();
+        var fd = new FormData();
+
+        fd.append('iid', iid);
+        fd.append('comment', com);
+        fd.append('uid', uid);
+        fd.append('action', 'addComment');
+
+        var xhr = getXHR();
+        xhr.open('POST', '../models/m_preview.php', true);
+        xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+        xhr.onload = function(e) {
+           location.reload();
+        };
+        xhr.send(fd);
+    }
+}
+
+function displayComs(txt) {
+    const pv = document.getElementById('comment-wrap');
+    let addCom = document.createElement('div');
+    let txtPart = document.createElement('textarea');
+    let btnPart = document.createElement('button');
+
+    txtPart.setAttribute('placeholder', 'Add comment...')
+    txtPart.setAttribute('maxlength', '128')
+    txtPart.setAttribute('id', 'add-com-pv-txt');
+    btnPart.setAttribute('id', 'add-com-pv-btn');
+    addCom.setAttribute('id', 'add-com-pv-wrap');
+
+    addCom.append(txtPart, btnPart);
+    pv.append(addCom);
+    addCom.addEventListener('click', addComment);
+    if (txt) {
+        txt = JSON.parse(txt);
+    } else {
+        return;
+    }
+    txt.forEach(function(e) {
+        com = document.createElement('div');
+        content = document.createElement('p');
+        com.setAttribute('class', 'comment');
+        content.setAttribute('class', 'comment-content');
+
+        com.setAttribute('data-uid', e['uid']);
+        com.setAttribute('data-iid', e['img_id']);
+        com.setAttribute('data-cid', e['com_id']);
+        content.textContent = e['username'] + ' : ' + e['text'];
+        com.append(content);
+        pv.append(com);
+    });
+}
+
+function getComments(imgId)
+{
+    var fd = new FormData();
+    fd.append('iid', imgId);
+    fd.append('action', 'getComments');
+
+    var xhr = getXHR();
+    xhr.open('POST', '../models/m_preview.php', true);
+    xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+    xhr.onload = function(e) {
+        displayComs(xhr.responseText);
+    };
+    xhr.send(fd);
+}
+
+function getLikeAmount(imgId, currUid)
+{
+    var fd = new FormData();
+    fd.append('iid', imgId);
+    fd.append('action', 'likeAmount');
+
+    var xhr = getXHR();
+    xhr.open('POST', '../models/m_preview.php', true);
+    xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+    xhr.onload = function(e) {
+        likeDisplay(xhr.responsetext, currUid, imgId);
+    };
+    xhr.send(fd);
+}
+
+function likeDisplay(likeNumber, currUid, imgId)
+{
+    likeBtn = document.getElementsByClassName('like-pv')[0];
+    if(likeNumber) {
+        likeBtn.textContent = 'Likes : ' + likeNumber;
+    } else {
+        likeBtn.textContent = 'Likes : 0';
+    }
+    if (currUid) {
+        likeBtn.addEventListener('click', function () {
+            var fd = new FormData();
+
+            fd.append('iid', imgId);
+            fd.append('uid', currUid);
+            fd.append('action', 'likeToggle');
+
+            var xhr = getXHR();
+            xhr.open('POST', '../models/m_preview.php', true);
+            xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+            xhr.onload = function(e) {
+                //getLikeAmount(imgId, 0);
+            };
+            xhr.send(fd);
+        });
+    }
+}
+
+function bigImg()
+{
     let check;
-
     if (check = document.getElementById('preview-feed')) {
         check.parentElement.removeChild(check);
     }
-
     let path = this.getAttribute('data-path');
     let imgId = this.getAttribute('data-iid');
     let imgUid = this.getAttribute('data-uid');
-
-    //var currUID = getUID();
-    //console.log(currUID);
-
+    var currUid = getUID();
     let str = this.innerText;
-    let delim = ' : ';
+    let delim = '\n';
     let uname = str.slice(0, str.indexOf(delim));
     let caption = str.slice(str.indexOf(delim) + delim.length);
-    let likeNum = document.createElement('div');
     let btnDel = document.createElement('button');
-    
+    let likeNum = document.createElement('button');
+    let comWrap = document.createElement('div');
+    let imgWrap = document.createElement('div');
+    imgWrap.setAttribute('id', 'img-wrap');
+    com = document.createElement('div');
+    content = document.createElement('p');
+    com.setAttribute('class', 'comment');
+    content.setAttribute('class', 'comment-content');
+    content.textContent = uname + ' : ' + caption;
+    com.append(content);
+    comWrap.setAttribute('id', 'comment-wrap');
     likeNum.setAttribute('class', 'like-pv');
-    likeNum.textContent = '👍' + getLikeAmount(imgId);
     btnDel.setAttribute('class', 'del-pv');
     btnDel.setAttribute('name', 'delbtn');
     btnDel.textContent = '❌';
-
     let pvDiv = document.createElement('div');
     let pvImg = document.createElement('img');
     let pvData = document.createElement('div');
-
     btnDel.addEventListener('click', function (e) {
         let check = document.getElementById('preview-feed');
         if(check) {
         check.parentElement.removeChild(check);
         }
     });
+
+    if (currUid == imgUid) {
+        let delPicture = document.createElement('button');
+        delPicture.setAttribute('class', 'del-pic');
+        delPicture.setAttribute('name', 'delbtn');
+        delPicture.textContent = 'Delete Picture';
+        delPicture.addEventListener('click', deleteImg)
+
+        imgWrap.appendChild(delPicture);
+    }
+
+    imgWrap.setAttribute('data-iid', imgId);
+    imgWrap.setAttribute('data-uid', imgUid);
     pvDiv.setAttribute('id', 'preview-feed');
     pvImg.setAttribute('src', '../img/' + imgUid + '/' + path);
 
-    pvDiv.appendChild(btnDel);
-    pvDiv.appendChild(likeNum);
-    pvDiv.appendChild(pvImg);
-    pvDiv.appendChild(pvData);
-
+    imgWrap.append(pvImg, btnDel, likeNum);
+    pvDiv.append(com, imgWrap, pvData, comWrap);
     document.body.appendChild(pvDiv);
-
-    //let infoPv = getComments(imgId)
+    getLikeAmount(imgId, currUid);
+    getComments(imgId);
 }
 
-function getComments(imgId) {
-
-    var fd = new FormData();
-
-    fd.append('iid', imgId);
-    fd.append('action', 'comments');
-
-    var xhr = getXHR();
-
-    xhr.open('POST', '../models/m_preview.php', true);
-
-    xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
-
-    xhr.onload = function(e) {
-        console.log(xhr.response);
-    };
-    xhr.send(fd);
-}
-
-function getLikeAmount(imgId) {
-
-    var fd = new FormData();
-
-    fd.append('iid', imgId);
-    fd.append('action', 'likeAmount');
-
-    var xhr = getXHR();
-
-    xhr.open('POST', '../models/m_preview.php', true);
-
-    xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
-
-    xhr.onload = function(e) {
-        console.log(xhr.response);
-    };
-    xhr.send(fd);
-}
 
 function appendArrows(pageInfo) {
     const page = document.getElementsByClassName('page')[0];
@@ -125,24 +231,18 @@ function getPageNum() {
 }
 
 function displayIMG(img) {
-    console.log(img);
     const feed = document.getElementById('feed');
     let divIMG = document.createElement('div');
     let image = document.createElement('img');
     let desc = document.createElement('span');
-    let name = document.createElement('strong');
-    let caption;
+    let name = document.createElement('div');
+    let caption = document.createElement('p');
+    caption.append(document.createTextNode(img['caption']));
 
-    if (img['caption'].length < 100) {
-        caption = document.createTextNode(' : ' + img['caption']);
-    } else {
-        caption = document.createTextNode(' : ' + img['caption'].substring(0, 97) + '...');
-    }
-
-    name.setAttribute('style', 'font-weight:bold');
+    name.setAttribute('class', 'feed-names');
+    caption.setAttribute('class', 'feed-captions');
     name.innerText = img['username'];
-    desc.append(name);
-    desc.append(caption);
+    desc.append(name, caption);
     desc.setAttribute('class', 'feed-desc');
     divIMG.setAttribute('class', 'elem-feed');
     divIMG.addEventListener('click', bigImg);
@@ -152,8 +252,7 @@ function displayIMG(img) {
     image.setAttribute('class', 'img-feed');
     image.setAttribute('src', '../img/' + img['uid'] + '/' + img['path']);
 
-    divIMG.append(image);
-    divIMG.append(desc);
+    divIMG.append(image, desc);
     feed.append(divIMG);
 }
 
@@ -194,7 +293,6 @@ function initFeed() {
     function loadImages () {
         let uname = document.getElementById('searchbar').value;
 
-
         if (!uname) {
             uname = "";
         }
@@ -202,13 +300,9 @@ function initFeed() {
         var fd = new FormData();
 
         fd.append('uname', uname);
-        
         var xhr = getXHR();
-
         xhr.open('POST', '../models/m_feed.php', true);
-
         xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
-
         xhr.onload = function(e) {
                 let pageInfo = displayPics(xhr.response);
                 appendArrows(pageInfo);

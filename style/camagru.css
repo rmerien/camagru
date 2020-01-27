@@ -14,3 +14,16 @@
 @import 'font.css';
 
 @import 'feed.css';
+
+* {
+    --color-camagru-1: #EDC7B7;
+    --color-camagru-2: #EEE2DC;
+    --color-camagru-3: #BAB2B5;
+    --color-camagru-4: #123C69;
+    --color-camagru-5: #AC3B61;
+}
+
+body {
+    background : var(--color-camagru-2);
+    color : var(--color-camagru-4);
+}

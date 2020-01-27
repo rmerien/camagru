@@ -25,9 +25,6 @@ if (empty($_SESSION['logged_on_user'])) {   ?>
     <input require class='form-v1' type="password" placeholder="Enter Password" name="psw" required>
         
     <button class='submit-button form-v1' type="submit">Login</button>
-<!--    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label> -->
   </div>
 
   <div class="container" style="background-color:#f1f1f1">

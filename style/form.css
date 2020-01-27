@@ -16,7 +16,7 @@ input[type=text].form-v1, input[type=password].form-v1 {
 }
 
 button.form-v1{
-  background-color: rgb(250,100,200);
+  background-color: var(--color-camagru-5);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;

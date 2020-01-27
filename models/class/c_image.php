@@ -40,16 +40,7 @@ class Image
 
 		$sql = "SELECT image.*, comment.username FROM `image`
 				INNER JOIN `comment` USING (img_id) WHERE image.path LIKE :path
-				INNER JOIN `comment` USING (img_id) WHERE image.path LIKE :path;
-
-		echo 'd';
-		$sql = "SELECT * FROM `image`
-				RIGHT JOIN `comment` USING (`img_id`)
-				UNION
-				SELECT * FROM `image`
-				LEFT JOIN `comment` USING (`img_id`)
-				";// WHERE image.path LIKE :path";
-			//	INNER JOIN `like` USING (img_id) WHERE image.path LIKE :path";
+				INNER JOIN `comment` USING (img_id) WHERE image.path LIKE :path";
 
 		$params = array(
 			'path' => $path
@@ -60,6 +51,26 @@ class Image
 			throw new Exception($e->getMessage());
 		}
 		$query = $handler->fetchAll();
+		return ($query);
+	}
+
+	public static function delImage($iid) {
+		$sql = "DELETE FROM `image` WHERE `img_id` IN
+		(
+			SELECT image.path, image.uid, image.img_id
+			FROM `image` WHERE `img_id` = :iid
+		)";
+		
+		$params = array(
+			'iid' => $iid
+		);
+		try {
+			$handler = Database::pdoQuery($sql, $params);
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+		}
+		$query = $handler->fetchAll();
+		var_dump($query);
 		return ($query);
 	}
 }

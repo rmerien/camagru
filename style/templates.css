@@ -27,19 +27,20 @@ h2.page-title {
 }
 
 .loader {
-	border: 16px solid #f3f3f3; /* Light grey */
-	border-top: 16px solid rgb(110, 100, 100); /* Blue */
+	border-top: 16px solid var(--color-camagru-4);
 	border-radius: 50%;
 	width: 120px;
 	height: 120px;
 	animation: spin 2s linear infinite;
   }
 
-  .lds-dual-ring {
+.lds-dual-ring {
+	border: none;
 	margin: 20vh auto;
 	display: block;
 	width: 80px;
 	height: 80px;
+	background: var(--color-camagru-2);
   }
 
   .lds-dual-ring:after {
@@ -50,8 +51,8 @@ h2.page-title {
 	height: 64px;
 	margin: 8px;
 	border-radius: 50%;
-	border: 6px solid black;
-	border-color: black transparent black transparent;
+	border: 6px solid var(--color-camagru-4);
+	border-color: var(--color-camagru-4) transparent var(--color-camagru-4) transparent;
 	animation: lds-dual-ring 1.2s linear infinite;
   }
 
@@ -74,14 +75,28 @@ h2.page-title {
 }
 
 .del-pv {
+	border-radius: 100%;
+	background: var(--color-camagru-2);
 	position: absolute;
 	right: 5px;
 	top: 5px;
 	width: 32px;
 	height: 32px;
-	opacity: 0.3;
+    border: 2px solid var(--color-camagru-5);
 	z-index: 100;
-  }
-  .del-pv:hover {
-	opacity: 1;
-  }
+}
+
+  /* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+	background: var(--color-camagru-5);
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: var(--color-camagru-4);
+}

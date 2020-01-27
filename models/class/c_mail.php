@@ -55,4 +55,24 @@ Class Mail
 
         self::sendMail();
     }
+
+    public static function checkNotif($user)
+    {
+        $sql = "SELECT `mail_notif` FROM `user` WHERE `username` = :uname";
+
+		$params = array(
+			':uname' => $user
+        );
+
+        try {
+			$handler = Database::pdoQuery($sql, $params);
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+        }
+        $query = $handler->fetch();
+        echo 'a';
+        var_dump($query);
+        echo $query[0];
+		return ($query[0]);
+    }
 }

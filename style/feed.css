@@ -4,8 +4,8 @@
 
 #searchbar {
     font-size: 19px;
-    border: 2px solid rgb(53, 0, 29);
-    box-shadow: 1px black;
+    border: 2px solid var(--color-camagru-4);
+    box-shadow: 1px var(--color-camagru-4);
 }
 
 h2#feed-title {
@@ -14,20 +14,32 @@ h2#feed-title {
 }
 
 #feed {
-    
     display: flex;
     flex-wrap: wrap;
 }
 
+#img-wrap {
+    margin: auto;
+    position: relative;
+    max-width: 70vw;
+    text-align: center;
+}
+
+#img-wrap > img {
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
+}
+
 .elem-feed {
-    overflow-wrap: anywhere;
     width: 300px;
     height: 350px;
     max-width: 300px;
     max-height: 350px;
-    background: pink;
     margin: 2% auto;
     overflow: hidden;
+    background-color: var(--color-camagru-1);
+    border: 4px ridge var(--color-camagru-1);
 }
 
 .img-feed {
@@ -38,52 +50,182 @@ h2#feed-title {
 
 .feed-desc {
     float: left;
-    /*overflow-wrap: anywhere;*/
     line-height: 1;
     text-overflow: ellipsis;
     font-size: 18px;
-    max-width: 300px;
     max-height: 50px;
+    width: 100%;
 }
 
 .nav-arrow:link, .nav-arrow:visited {
+    margin: 10px;
     text-align: center;
     padding: 10px;
-    background-color: #f44336;
-    color: white;
-    padding: 14px 25px;
+    background-color: var(--color-camagru-1);
+    color: var(--color-camagru-4);
+    padding: 10px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    font-size: 23px;
+    border-radius: 6px;
 }
 
 .nav-arrow:hover {
     opacity: 0.7;
 }
 
-.arr-menu {
+#arr-menu {
     display: flex;
+    justify-content: center;
 }
 
 div#preview-feed {
-    top: 50%;
+    background-color: var(--color-camagru-2);
+    top: 0px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: yellowgreen;
+    transform: translate(-50%, 0);
     z-index: 99;
     position: fixed;
-    margin: auto;
+    margin-top: 50px;
+    max-height: 80%;
+    border: 3px solid var(--color-camagru-5);
+    overflow: hidden;
+}
+
+div#preview-feed > img {
+    max-height: 50vh;
+    max-width: 80vw;
+}
+
+.like-pv, .del-pic{
+    position: absolute;
+	height: 32px;
+    z-index: 100;
+    background: var(--color-camagru-1);
+    border-radius: 5px;
+    border: 2px solid var(--color-camagru-5);
 }
 
 .like-pv {
-    background-color: whitesmoke;
+    left: 5px;
+    top: 5px;
+}
+
+.del-pic {
+	right: 5px;
+	top: 50px;
+}
+
+.comment, #add-com-pv-wrap {
+    vertical-align: top;
+    margin: 20px 15px;
+    border-radius: 10px;
+}
+
+.comment {
+    background-color: var(--color-camagru-2);
+    border: 1px solid var(--color-camagru-4);
+}
+
+.comment-content {
+    margin: 10px;
+}
+
+#comment-wrap {
+    max-height: 30vh;
+    overflow: hidden scroll;
+}
+
+.feed-names {
+    min-width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 2px 10px;
+    text-align: center;
+    border-bottom: 2px solid var(--color-camagru-4);
+}
+
+.feed-captions {
+    margin: 2px 5px;
+    overflow: hidden;
+    position: relative; 
+    line-height: 1.2em;
+    max-height: 2.4em;
+    padding-right: 1em;
+}
+
+.feed-captions::before {
+    content: '...';
     position: absolute;
-	left: 5px;
-	top: 5px;
-	height: 32px;
-	opacity: 0.3;
-	z-index: 100;
-  }
-.like-pv:hover {
-	opacity: 1;
+    right: 0;
+    bottom: 0;
+}
+
+.feed-captions::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: var(--color-camagru-1);
+}
+
+#add-com-pv-txt {
+    font-size: 1em;
+    margin: 3px 0;
+    outline: none;
+    overflow: auto;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+    width: 80%;
+    height: 100%;
+    background: var(--color-camagru-2);
+    color: var(--color-camagru-5);
+}
+
+#add-com-pv-btn {
+    position: absolute;
+    top: 0;
+    padding: 0;
+    width: 20%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-left: 2px solid var(--color-camagru-5);
+    background: var(--color-camagru-3);
+}
+
+#add-com-pv-btn:focus{
+    background: var(--color-camagru-4);
+    color: var(--color-camagru-1);
+}
+
+#add-com-pv-btn::after {
+    content: "Submit";
+    font-size: 1rem;
+}
+
+#add-com-pv-wrap {
+    overflow: hidden;
+    position: relative;
+    min-height: 2.6em;
+    background-color: var(--color-camagru-2);
+    border: 1px solid var(--color-camagru-5);
+}
+
+@media screen and (max-width: 1000px) {
+    div#preview-feed {
+        width: 100%;
+    }
+    #img-wrap {
+        width: 98vw;
+        max-width: 98vw;
+        margin-right: 2vw;
+        max-height: 100vw;
+    }
 }

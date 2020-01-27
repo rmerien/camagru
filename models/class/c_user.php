@@ -12,7 +12,7 @@ Class User
 		if (!filter_var($mail, FILTER_VALIDATE_EMAIL) && $mail) {
 			throw new Exception("Mail is invalid");
 		}
-		else
+		else if ($mail)
 		{
 			foreach($allUsers as $user)
 			{
@@ -32,14 +32,17 @@ Class User
 			}
 		}
 
-		if (strlen($passwd) < 8)
-			throw new Exception("Password too short!");
-	    else if (!preg_match('/[0-9]+/', $passwd))
-			throw new Exception("Password must include at least one number!");
-	    else if (!preg_match('/[A-Z]+/', $passwd))
-			throw new Exception("Password must include at least one upper case letter!");
-	    else if (!preg_match('/[a-z]+/', $passwd))
-            throw new Exception("Password must include at least one lower case letter!");
+		if ($passwd)
+		{
+			if (strlen($passwd) < 8)
+				throw new Exception("Password too short!");
+			else if (!preg_match('/[0-9]+/', $passwd))
+				throw new Exception("Password must include at least one number!");
+			else if (!preg_match('/[A-Z]+/', $passwd))
+				throw new Exception("Password must include at least one upper case letter!");
+			else if (!preg_match('/[a-z]+/', $passwd))
+				throw new Exception("Password must include at least one lower case letter!");
+		}
         if ($oldpasswd)
         {
             $sql = "SELECT * FROM `user` WHERE `username` = :uname AND `passwd` = :oldpasswd";
@@ -186,6 +189,19 @@ Class User
 			throw $e;
 		}
 		return ($query);
+	}
+
+	public static function changePassword($uname, $passwd, $oldpasswd)
+	{
+		try {
+			self::checkValidInfo($uname, 0, $passwd, $oldpasswd);
+		} catch (Exception $e) {
+			throw $e;
+		}
+
+		$sql = "UPDATE `user` SET `passwd` = :passwd WHERE `username` = :uname";
+
+		
 	}
 
 	public static function updateUserInfo($updatedInfo) {

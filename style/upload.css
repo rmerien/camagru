@@ -1,37 +1,53 @@
 #up-strip {
+    margin-top: 50px;
     display: block;
     width: 30%;
     margin-left: 5%;
-    background-color: pink;
+    background-color: var(--color-camagru-4);
 }
 
 #up-main {
-    background-color: rgb(167, 80, 159);
+    margin-top: 50px;
+    background-color: var(--color-camagru-1);
     display: block;
     width: 65%;
     min-height: 70vh;
 }
 
-#canvas {
-    margin-top: 2%;
-    max-width: 100%;
-    max-height: 65vh;
+#file {
+    display:none;
 }
 
-#to-up, #file-lab, #snap{
+#canvas {
+    width: 100%;
+    max-width: 100%;
+    max-height: 65vh;
+    border: 2.5px solid var(--color-camagru-4);
+}
+
+#to-up, #file-lab, #snap, select{
     margin: auto;
-	box-shadow:inset 0px 1px 3px 0px #91b8b3;
-	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	box-shadow:inset 0px 1px 3px 0px var(--color-camagru-4);
+	background:linear-gradient(to bottom, var(--color-camagru-4) 5%, var(--color-camagru-5) 100%);
 	border-radius:5px;
 	border:1px solid #566963;
 	cursor:pointer;
-	color:#ffffff;
+	color:var(--color-camagru-1);
 	font-size:15px;
 	font-weight:bold;
 	padding:11px 23px;
 	text-decoration:none;
 	text-shadow:0px -1px 0px #2b665e;
 }
+
+#snap::after {
+    content: '📸';
+}
+
+#file-lab::after {
+    content: 'Choose File';
+}
+
 #to-up:hover, #file-lab:hover, #snap:hover {
 	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
 	background-color:#6c7c7c;
@@ -94,3 +110,11 @@
     }
 }
 
+select {
+    margin: 50px;
+    width: 150px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #CCC;
+    height: 34px;
+}

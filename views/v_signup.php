@@ -31,7 +31,7 @@ if (empty($_SESSION['logged_on_user'])) {   ?>
 
   </div>
 
-  <div class="container" style="background-color:#f1f1f1">
+  <div class="container">
     <span class="psw">Already have an account? <a href="#">login</a></span>
   </div>
 
